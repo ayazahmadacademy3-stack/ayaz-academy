@@ -1,14 +1,17 @@
-import Navbar from '@/components/Navbar';
-import HeroSlider from '@/components/HeroSlider';
+import Navbar from '@/components/navbar/Navbar';
+import HeroSlider from '@/components/hero-slider/HeroSlider';
+import WhyChooseUs from '@/components/why-choose-us/WhyChooseUs';
+import Footer from '@/components/footer/Footer';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <HeroSlider />
+      <WhyChooseUs />
       
       {/* Welcome Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#2B4C9F] mb-4">
@@ -22,13 +25,12 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      {/* <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
             <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#2B4C9F] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,7 +44,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Feature 2 */}
             <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#F5A623] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,7 +57,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Feature 3 */}
             <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-16 h-16 bg-[#2B4C9F] rounded-full flex items-center justify-center mb-6">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,10 +71,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Stats Section */}
-      <section className="py-20 bg-[#2B4C9F] text-white">
+      {/* <section className="py-20 bg-[#2B4C9F] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
@@ -95,10 +95,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-[#2B4C9F] mb-6">
             Ready to Start Your Journey?
@@ -111,10 +111,10 @@ export default function Home() {
             Enroll Now
           </button>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      {/* <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
@@ -145,7 +145,10 @@ export default function Home() {
             <p>&copy; 2026 Ayaz Ahmad Academy. All rights reserved.</p>
           </div>
         </div>
-      </footer>
+      </footer> */}
+      
+      {/* Simple Footer for Testing */}
+     <Footer/>
     </div>
   );
 }

@@ -24,25 +24,22 @@ export default function Navbar() {
           : 'bg-gradient-to-r from-[#2B4C9F] via-[#1e3a8a] to-[#2B4C9F] py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-6 sm:px-8 lg:px-12">
         <div className="flex justify-between items-center">
-          {/* Logo with Animation */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-[#F5A623] rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity"></div>
-              <Image
-                src="/academy-logo.png"
-                alt="Ayaz Ahmad Academy Logo"
-                width={55}
-                height={55}
-                className="relative object-contain transform group-hover:scale-110 transition-transform duration-300"
-              />
-            </div>
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-4 group">
+            <Image
+              src="/academy-logo.png"
+              alt="Ayaz Ahmad Academy Logo"
+              width={90}
+              height={90}
+              className="object-contain transform group-hover:scale-105 transition-transform duration-300"
+            />
             <div className="flex flex-col">
-              <span className="text-lg font-bold text-white tracking-wide">
+              <span className="text-2xl font-bold text-white ml-[-20px] tracking-wide">
                 Ayaz Ahmad Academy
               </span>
-              <span className="text-xs text-[#F5A623] font-medium">
+              <span className="text-base ml-[-20px] text-[#F5A623] font-medium">
                 Institute of O & A Level
               </span>
             </div>
@@ -57,13 +54,12 @@ export default function Navbar() {
             <NavLink href="/contact">Contact</NavLink>
             <Link 
               href="/enroll" 
-              className="ml-4 relative group overflow-hidden bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#F5A623]/50"
+              className="ml-4 relative group overflow-hidden bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#F5A623]/30"
             >
-              <span className="relative z-10">Enroll Now</span>
-              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-              <span className="absolute inset-0 flex items-center justify-center text-[#2B4C9F] font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Enroll Now
-              </span>
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#2B4C9F]">Register Now</span>
+              
+              {/* Liquid Fill Effect */}
+              <div className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-500 ease-out rounded-full"></div>
             </Link>
           </div>
 
@@ -94,9 +90,12 @@ export default function Navbar() {
             <MobileNavLink href="/contact">Contact</MobileNavLink>
             <Link 
               href="/enroll" 
-              className="bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold hover:bg-white hover:text-[#2B4C9F] transition-all text-center mt-2"
+              className="relative group overflow-hidden bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold transition-all text-center mt-2 hover:shadow-lg hover:shadow-[#F5A623]/30"
             >
-              Enroll Now
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#2B4C9F]">Enroll Now</span>
+              
+              {/* Liquid Fill Effect */}
+              <div className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-500 ease-out rounded-full"></div>
             </Link>
           </div>
         </div>

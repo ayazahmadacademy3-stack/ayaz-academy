@@ -2,34 +2,35 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import styles from './HeroSlider.module.css';
 
 const slides = [
   {
     id: 1,
-    badge: 'Serving Since 2007',
-    title: 'AYAZ AHMAD ACADEMY',
-    subtitle: 'Institute of O & A Level',
-    description: 'Enhance your knowledge and skills with personalized tutoring from Ayaz Ahmad Academy – your gateway to expert guidance and deep understanding in any subject.',
-    primaryBtn: 'Request For A Tutor',
-    secondaryBtn: 'Become A Tutor',
+    badge: 'Comprehensive Education',
+    title: 'Excellence in Education from Primary to University',
+    subtitle: 'Complete Learning Journey',
+    description: 'From foundational primary education to advanced university preparation, we provide comprehensive academic support at every stage of your educational journey.',
+    primaryBtn: 'Explore Programs',
+    secondaryBtn: 'Learn More',
   },
   {
     id: 2,
-    badge: 'Excellence in Education',
-    title: 'EXPERT FACULTY',
-    subtitle: 'Learn from the Best',
-    description: 'Our experienced teachers are dedicated to helping you excel in your O & A Level examinations with proven teaching methodologies and personalized attention.',
-    primaryBtn: 'Meet Our Teachers',
-    secondaryBtn: 'View Courses',
+    badge: 'Leadership Development',
+    title: 'Shaping Future Leaders Through Quality Education',
+    subtitle: 'Building Tomorrow\'s Innovators',
+    description: 'We don\'t just teach subjects – we nurture critical thinking, leadership skills, and character development to prepare students for success in life.',
+    primaryBtn: 'Our Approach',
+    secondaryBtn: 'View Programs',
   },
   {
     id: 3,
-    badge: 'Modern Learning',
-    title: 'STATE-OF-THE-ART FACILITIES',
-    subtitle: 'Best Learning Environment',
-    description: 'Experience education in a comfortable and technology-enabled learning environment designed to maximize student engagement and academic success.',
-    primaryBtn: 'Take A Tour',
-    secondaryBtn: 'Learn More',
+    badge: 'Academic Excellence',
+    title: 'Your Gateway to Academic Success',
+    subtitle: 'Achieve Your Dreams',
+    description: 'With proven teaching methods, personalized attention, and a supportive learning environment, we help students unlock their full potential and achieve outstanding results.',
+    primaryBtn: 'Get Started',
+    secondaryBtn: 'Contact Us',
   },
 ];
 
@@ -58,38 +59,43 @@ export default function HeroSlider() {
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 transition-all duration-1000 ${
-            index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          className={`absolute inset-0 transition-opacity duration-700 ${
+            index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         >
           <div className="h-full w-full bg-gradient-to-br from-black via-[#1a2d5f] to-black flex items-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                {/* Left Content */}
-                <div className="text-white space-y-6 animate-fadeInLeft">
+            <div className="w-full px-4 sm:px-6 lg:px-16 xl:px-24 2xl:px-32">
+              <div className="grid lg:grid-cols-2 gap-12 items-center max-w-[1600px] mx-auto">
+                {/* Left Content - Slides in from Right */}
+                <div 
+                  className={`text-white space-y-6 ${
+                    index === currentSlide ? styles['animate-slideInFromRight'] : ''
+                  }`}
+                  key={`content-${slide.id}-${currentSlide}`}
+                >
                   {/* Badge */}
-                  <div className="inline-block">
+                  <div className="inline-block mt-5 pt-3">
                     <span className="bg-gradient-to-r from-[#F5A623] to-[#d97706] text-white px-4 py-2 rounded-full text-sm font-semibold">
                       {slide.badge}
                     </span>
                   </div>
 
                   {/* Main Title */}
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                  <h3 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                     <span className="text-white">{slide.title.split(' ').slice(0, -1).join(' ')}</span>
                     <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A623] to-[#fbbf24]">
                       {slide.title.split(' ').slice(-1)}
                     </span>
-                  </h1>
+                  </h3>
 
                   {/* Subtitle */}
-                  <p className="text-xl md:text-2xl text-[#F5A623] font-semibold">
+                  <p className="text-xl md:text-2xl xl:text-3xl text-[#F5A623] font-semibold">
                     {slide.subtitle}
                   </p>
 
                   {/* Description */}
-                  <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-xl">
+                  <p className="text-base md:text-lg xl:text-xl text-gray-300 leading-relaxed max-w-2xl">
                     {slide.description}
                   </p>
 
@@ -104,52 +110,51 @@ export default function HeroSlider() {
                   </div>
                 </div>
 
-                {/* Right Content - Hexagonal Images */}
-                <div className="relative hidden lg:block animate-fadeInRight">
-                  <div className="relative w-full h-[500px]">
+                {/* Right Content - Hexagonal Images - Slides in from Left */}
+                <div 
+                  className={`relative hidden lg:flex justify-center items-center ${
+                    index === currentSlide ? styles['animate-slideInFromLeft'] : ''
+                  }`}
+                  key={`images-${slide.id}-${currentSlide}`}
+                >
+                  <div className="relative w-full max-w-[600px] h-[500px]">
                     {/* Decorative Elements */}
-                    <div className="absolute top-0 right-0 w-72 h-72 border-4 border-[#F5A623] rounded-full opacity-20 animate-spin-slow"></div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 border-4 border-[#2B4C9F] rounded-full opacity-20 animate-spin-slow-reverse"></div>
+                    <div className={`absolute top-0 right-0 w-72 h-72 border-4 border-[#F5A623] rounded-full opacity-20 ${styles['animate-spin-slow']}`}></div>
+                    <div className={`absolute bottom-0 left-0 w-64 h-64 border-4 border-[#2B4C9F] rounded-full opacity-20 ${styles['animate-spin-slow-reverse']}`}></div>
                     
                     {/* Hexagon Container */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                       {/* Top Hexagon - Teacher Teaching */}
-                      <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-48 h-48 hexagon-clip bg-gradient-to-br from-[#F5A623] to-[#d97706] p-1 animate-float shadow-2xl">
-                        <div className="w-full h-full hexagon-clip bg-white overflow-hidden">
-                          <Image
-                            src="/images/teacher-teaching.jpg"
-                            alt="Teacher Teaching"
-                            width={200}
-                            height={200}
-                            className="object-cover w-full h-full"
-                          />
-                        </div>
+                      <div className={`absolute -top-20 left-1/2 transform -translate-x-1/2 w-48 h-48 ${styles['hexagon-clip']} ${styles['animate-float']} shadow-2xl overflow-hidden`}>
+                        <Image
+                          src="/images/teacher-teaching.jpg"
+                          alt="Teacher Teaching"
+                          width={200}
+                          height={200}
+                          className="object-cover w-full h-full"
+                        />
                       </div>
 
                       {/* Bottom Left Hexagon - One on One Tutoring */}
-                      <div className="absolute top-24 -left-32 w-56 h-56 hexagon-clip bg-gradient-to-br from-[#2B4C9F] to-[#1e3a8a] p-1 animate-float-delayed shadow-2xl">
-                        <div className="w-full h-full hexagon-clip bg-white overflow-hidden">
-                          <Image
-                            src="/images/tutoring.jpg"
-                            alt="One on One Tutoring"
-                            width={240}
-                            height={240}
-                            className="object-cover w-full h-full"
-                          />
-                        </div>
+                      <div className={`absolute top-24 -left-32 w-56 h-56 ${styles['hexagon-clip']} ${styles['animate-float-delayed']} shadow-2xl overflow-hidden`}>
+                        <Image
+                          src="/images/tutoring.jpg"
+                          alt="One on One Tutoring"
+                          width={240}
+                          height={240}
+                          className="object-cover w-full h-full"
+                        />
                       </div>
 
                       {/* Bottom Right Hexagon - Students Studying */}
-                      <div className="absolute top-24 left-20 w-64 h-64 hexagon-clip bg-gradient-to-br from-[#F5A623] to-[#d97706] p-1 animate-float-delayed-2 shadow-2xl">
-                        <div className="w-full h-full hexagon-clip bg-white overflow-hidden">
-                          <Image
-                            src="/images/students-studying.jpg"
-                            alt="Students Studying"
-                            width={280}
-                            height={280}
-                            className="object-cover w-full h-full"
-                          />
-                        </div>
+                      <div className={`absolute top-24 left-20 w-64 h-64 ${styles['hexagon-clip']} ${styles['animate-float-delayed-2']} shadow-2xl overflow-hidden`}>
+                        <Image
+                          src="/images/students-studying.jpg"
+                          alt="Students Studying"
+                          width={280}
+                          height={280}
+                          className="object-cover w-full h-full"
+                        />
                       </div>
                     </div>
 

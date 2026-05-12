@@ -7,6 +7,15 @@ export default function Footer() {
   const [hoveredLink, setHoveredLink] = useState(null);
   const [email, setEmail] = useState('');
   const [particles, setParticles] = useState([]);
+  const [showScrollBtn, setShowScrollBtn] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollBtn(window.scrollY > 300);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     // Generate random particles for background
@@ -108,7 +117,7 @@ export default function Footer() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Stats Section - Top Banner */}
-        <div className="py-12 border-b border-white/10">
+        {/* <div className="py-12 border-b border-white/10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <div
@@ -116,7 +125,6 @@ export default function Footer() {
                 className="group relative"
               >
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-[#F5A623] transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#F5A623]/20">
-                  {/* Glow Effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#F5A623]/0 to-[#F5A623]/0 group-hover:from-[#F5A623]/10 group-hover:to-transparent rounded-2xl transition-all duration-500"></div>
                   
                   <div className="relative text-center">
@@ -130,7 +138,7 @@ export default function Footer() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Main Footer Content */}
         <div className="py-16">
@@ -167,7 +175,7 @@ export default function Footer() {
 
                 {/* Newsletter */}
                 <div className="mb-8">
-                  <h4 className="text-lg font-bold text-white mb-4 flex items-center">
+                  <h4 className="text-lg font-bold text-white mb-4 flex items-center pt-[70px]">
                     <span className="w-2 h-2 bg-[#F5A623] rounded-full mr-3 animate-pulse"></span>
                     Subscribe to Newsletter
                   </h4>
@@ -220,7 +228,9 @@ export default function Footer() {
             </div>
 
             {/* Links Sections */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="lg:col-span-7 flex flex-col gap-8">
+              {/* Top 3 columns */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {/* Quick Links */}
               <div>
                 <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
@@ -228,7 +238,7 @@ export default function Footer() {
                   <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
                 </h4>
                 <ul className="space-y-3">
-                  {['Home', 'About Us', 'Admissions', 'Faculty', 'Results', 'Gallery'].map((link, index) => (
+                  {['Home', 'About Us', 'Contact-Us', 'Courses', 'Faculty'].map((link, index) => (
                     <li key={index}>
                       <Link
                         href={`/${link.toLowerCase().replace(' ', '-')}`}
@@ -313,6 +323,72 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
+
+            {/* Map — fills remaining space below the 3 columns */}
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
+              {/* Header Bar */}
+              <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#0a0e27]/90 via-[#1a1f3a]/90 to-[#0a0e27]/90 border-b border-white/10">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                  <span className="ml-2 text-gray-400 text-xs font-mono">maps.ayazacademy.edu</span>
+                </div>
+                <div className="flex items-center space-x-1 text-[#F5A623]">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className="text-xs font-semibold">Karachi, Pakistan</span>
+                </div>
+              </div>
+
+              {/* Map Iframe */}
+              <div className="relative h-52">
+                <div className="absolute inset-0 z-10 pointer-events-none">
+                  <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-[#0a0e27]/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-[#0a0e27]/40 to-transparent"></div>
+                  <div className="absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-[#0a0e27]/40 to-transparent"></div>
+                  <div className="absolute top-0 bottom-0 right-0 w-6 bg-gradient-to-l from-[#0a0e27]/40 to-transparent"></div>
+                </div>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231960.27722053638!2d66.99006!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e06651d4bbf%3A0x9cf92f44555a0c23!2sKarachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1715000000000!5m2!1sen!2s"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) saturate(0.8) brightness(0.85)' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0"
+                ></iframe>
+              </div>
+
+              {/* Bottom Info Bar */}
+              <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 bg-gradient-to-r from-[#0a0e27]/90 via-[#1a1f3a]/90 to-[#0a0e27]/90 border-t border-white/10">
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-1.5">
+                    <div className="w-1.5 h-1.5 bg-[#F5A623] rounded-full animate-pulse"></div>
+                    <span className="text-gray-300 text-xs">Karachi, Sindh</span>
+                  </div>
+                  <div className="flex items-center space-x-1.5">
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                    <span className="text-gray-300 text-xs">24°51′N 67°00′E</span>
+                  </div>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Karachi,Pakistan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-[#F5A623] to-[#ff8c00] rounded-lg text-white text-xs font-semibold hover:shadow-lg hover:shadow-[#F5A623]/40 hover:scale-105 transition-all duration-300"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  <span>Open in Maps</span>
+                </a>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
 
@@ -342,7 +418,9 @@ export default function Footer() {
       {/* Scroll to Top Button */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-[#F5A623] to-[#ff8c00] rounded-2xl flex items-center justify-center shadow-2xl shadow-[#F5A623]/50 hover:shadow-[#F5A623]/70 transition-all duration-300 hover:scale-110 hover:-translate-y-1 group z-50"
+        className={`fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-[#F5A623] to-[#ff8c00] rounded-2xl flex items-center justify-center shadow-2xl shadow-[#F5A623]/50 hover:shadow-[#F5A623]/70 transition-all duration-300 hover:scale-110 hover:-translate-y-1 group z-50 ${
+          showScrollBtn ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
       >
         <svg className="w-6 h-6 text-white group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 10l7-7m0 0l7 7m-7-7v18" />

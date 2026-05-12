@@ -188,14 +188,36 @@ export default function HeroSlider() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 right-8 animate-bounce">
-        <div className="flex flex-col items-center text-white/70">
-          <span className="text-xs mb-2">Scroll</span>
+      <button
+        onClick={() => {
+          const target = window.innerHeight;
+          const start = window.scrollY;
+          const distance = target - start;
+          const duration = 1800; // ms — increase for slower scroll
+          let startTime = null;
+
+          const easeInOutCubic = (t) =>
+            t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+          const step = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const elapsed = timestamp - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            window.scrollTo(0, start + distance * easeInOutCubic(progress));
+            if (progress < 1) requestAnimationFrame(step);
+          };
+
+          requestAnimationFrame(step);
+        }}
+        className="absolute bottom-8 right-8 flex flex-col items-center text-white/70 hover:text-[#F5A623] transition-colors duration-300 cursor-pointer group"
+      >
+        <span className="text-xs mb-2 group-hover:text-[#F5A623] transition-colors duration-300">Scroll</span>
+        <div className="animate-bounce">
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
-      </div>
+      </button>
     </div>
   );
 }

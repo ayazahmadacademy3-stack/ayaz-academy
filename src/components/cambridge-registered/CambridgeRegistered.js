@@ -163,7 +163,7 @@ export default function CambridgeRegistered() {
               {/* Cambridge logo */}
               <div className="relative w-full aspect-[3/2] group-hover:scale-105 transition-transform duration-500">
                 <Image
-                  src="/images/cambridge-logo-written.PNG"
+                  src="/images/cambridge-logo-written.png"
                   alt="Cambridge Assessment International Education"
                   fill
                   className="object-contain drop-shadow-2xl"

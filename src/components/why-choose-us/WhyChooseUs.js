@@ -175,18 +175,8 @@ export default function WhyChooseUs() {
         {/* Bottom CTA */}
         <div className="mt-12 md:mt-16 text-center px-4">
           <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-            <button className="relative overflow-hidden bg-[#F5A623] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-[#F5A623]/50 group">
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#2B4C9F]">Schedule a Visit</span>
-              
-              {/* Liquid Fill Effect */}
-              <div className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-500 ease-out rounded-full"></div>
-            </button>
-            <button className="relative overflow-hidden border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-white/30 group">
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#2B4C9F]">Contact Us</span>
-              
-              {/* Liquid Fill Effect */}
-              <div className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-500 ease-out rounded-full"></div>
-            </button>
+            <button className="btn-primary"><span>Schedule a Visit</span></button>
+            <button className="btn-outline"><span>Contact Us</span></button>
           </div>
         </div>
       </div>

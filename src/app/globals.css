@@ -83,3 +83,91 @@ h6 {
     font-size: 1.25rem; /* 20px */
   }
 }
+
+/* ============================================
+   GLOBAL BUTTON STYLES
+   Usage:
+     Primary (orange):  <button class="btn-primary">Text</button>
+     Outline (white):   <button class="btn-outline">Text</button>
+   Both buttons need a <span> inside for the text:
+     <button class="btn-primary"><span>Text</span></button>
+   ============================================ */
+
+/* Shared base */
+.btn-primary,
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+@media (min-width: 640px) {
+  .btn-primary,
+  .btn-outline {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* Liquid fill pseudo-element */
+.btn-primary::after,
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: white;
+  border-radius: 9999px;
+  transition: height 0.5s ease-out;
+}
+
+.btn-primary:hover::after,
+.btn-outline:hover::after {
+  height: 100%;
+}
+
+/* Text sits above the fill */
+.btn-primary span,
+.btn-outline span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.3s ease;
+}
+
+/* ── Primary — orange fill ── */
+.btn-primary {
+  background-color: #F5A623;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 25px 50px -12px rgba(245, 166, 35, 0.5);
+}
+
+.btn-primary:hover span {
+  color: #2B4C9F;
+}
+
+/* ── Outline — white border ── */
+.btn-outline {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-outline:hover {
+  box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline:hover span {
+  color: #2B4C9F;
+}

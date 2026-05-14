@@ -3,6 +3,8 @@ import HeroSlider from '@/components/hero-slider/HeroSlider';
 import WhyChooseUs from '@/components/why-choose-us/WhyChooseUs';
 import Stats from '@/components/stats/Stats';
 import CambridgeRegistered from '@/components/cambridge-registered/CambridgeRegistered';
+import AboutUs from '@/components/about-us/AboutUs';
+import Testimonials from '@/components/testimonials/Testimonials';
 import Footer from '@/components/footer/Footer';
 
 export default function Home() {
@@ -10,9 +12,11 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <HeroSlider />
+      <AboutUs />
       <WhyChooseUs />
       <CambridgeRegistered />
       <Stats />
+      <Testimonials />
       
       {/* Welcome Section */}
       {/* <section className="py-20 bg-white">

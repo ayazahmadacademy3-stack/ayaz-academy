@@ -102,9 +102,11 @@ h6 {
   border-radius: 9999px;
   font-weight: 700;
   font-size: 1rem;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
   display: inline-block;
+  border: none;
+  outline: none;
 }
 
 @media (min-width: 640px) {
@@ -127,6 +129,7 @@ h6 {
   background: white;
   border-radius: 9999px;
   transition: height 0.5s ease-out;
+  z-index: 1;
 }
 
 .btn-primary:hover::after,
@@ -140,34 +143,37 @@ h6 {
   position: relative;
   z-index: 10;
   transition: color 0.3s ease;
+  display: inline-block;
 }
 
 /* ── Primary — orange fill ── */
 .btn-primary {
-  background-color: #F5A623;
-  color: white;
-  border: none;
+  background-color: #F5A623 !important;
+  color: white !important;
+  border: none !important;
 }
 
 .btn-primary:hover {
   box-shadow: 0 25px 50px -12px rgba(245, 166, 35, 0.5);
+  transform: translateY(-2px);
 }
 
 .btn-primary:hover span {
-  color: #2B4C9F;
+  color: #2B4C9F !important;
 }
 
 /* ── Outline — white border ── */
 .btn-outline {
-  background-color: transparent;
-  color: white;
-  border: 2px solid white;
+  background-color: transparent !important;
+  color: white !important;
+  border: 2px solid white !important;
 }
 
 .btn-outline:hover {
   box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .btn-outline:hover span {
-  color: #2B4C9F;
+  color: #2B4C9F !important;
 }

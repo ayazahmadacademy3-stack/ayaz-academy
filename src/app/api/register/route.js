@@ -1,7 +1,4 @@
 import nodemailer from 'nodemailer';
-import { writeFile, mkdir } from 'fs/promises';
-import { existsSync } from 'fs';
-import path from 'path';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -57,7 +54,7 @@ const emailFooter = () => `
   </div>`;
 
 /* ── Admin email HTML ── */
-const buildAdminHtml = (type, fields, cvDownloadLink, cvFileName) => {
+const buildAdminHtml = (type, fields, cvAttached, cvFileName) => {
   const isStudent   = type === 'student';
   const accent      = isStudent ? '#F5A623' : '#4a7cf7';
   const accentDark  = isStudent ? '#cc7a00' : '#1a3fa8';
@@ -110,24 +107,22 @@ const buildAdminHtml = (type, fields, cvDownloadLink, cvFileName) => {
           </table>
         </div>
 
-        ${cvDownloadLink ? `
-        <!-- CV download button -->
-        <div style="background:linear-gradient(135deg,rgba(74,124,247,0.06),rgba(43,76,159,0.04));border:1px solid rgba(74,124,247,0.2);border-radius:12px;padding:20px 24px;">
+        ${cvAttached ? `
+        <div style="margin-top:8px;background:linear-gradient(135deg,#1e3a8a,#1e40af);border-radius:12px;padding:20px 24px;">
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
               <td style="vertical-align:middle;">
-                <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#1e40af;">CV Uploaded</p>
-                <p style="margin:0;font-size:13px;color:#6b7280;">${cvFileName}</p>
+                <p style="margin:0 0 4px;font-size:16px;font-weight:800;color:#ffffff;">&#128206; CV is Attached Below</p>
+                <p style="margin:0 0 6px;font-size:13px;color:rgba(255,255,255,0.7);">File: <strong style="color:#ffffff;">${cvFileName || 'cv-file'}</strong></p>
+                <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;">
+                  &#8595;&nbsp; Scroll down to the bottom of this email to see the attachment thumbnail and download the CV.
+                </p>
               </td>
-              <td align="right" style="vertical-align:middle;">
-                <a href="${cvDownloadLink}"
-                   download
-                   style="display:inline-block;background:linear-gradient(135deg,#4a7cf7,#1a3fa8);
-                          color:#ffffff;text-decoration:none;padding:10px 22px;
-                          border-radius:8px;font-size:13px;font-weight:700;
-                          box-shadow:0 4px 14px rgba(74,124,247,0.4);">
-                  Download CV
-                </a>
+              <td align="right" style="vertical-align:middle;padding-left:16px;white-space:nowrap;">
+                <div style="background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.4);border-radius:8px;padding:10px 16px;text-align:center;">
+                  <p style="margin:0;font-size:22px;line-height:1;">&#128196;</p>
+                  <p style="margin:4px 0 0;font-size:10px;font-weight:700;color:#ffffff;text-transform:uppercase;letter-spacing:0.5px;">CV File</p>
+                </div>
               </td>
             </tr>
           </table>
@@ -216,12 +211,13 @@ const buildUserHtml = (type, name) => {
 export async function POST(request) {
   try {
     const formData = await request.formData();
-    const type   = formData.get('type');
+    const type     = formData.get('type');
 
-    /* ── Extract CV file properly ── */
+    /* ── Extract CV file ── */
     const cvEntry = formData.get('cv');
     const cvFile  = (cvEntry && typeof cvEntry === 'object' && cvEntry.size > 0) ? cvEntry : null;
 
+    /* ── Extract text fields ── */
     const fields = {};
     for (const [key, value] of formData.entries()) {
       if (key === 'cv') continue;
@@ -233,36 +229,29 @@ export async function POST(request) {
     const userName  = fields.fullName || 'Applicant';
     const userEmail = fields.email;
 
-    /* ── Save CV to disk & build download link ── */
-    let cvDownloadLink = null;
-    let cvFileName     = null;
-
+    /* ── Build attachment array directly from buffer ── */
+    const attachments = [];
     if (cvFile) {
-      // ensure directory exists
-      const cvDir = path.join(process.cwd(), 'public', 'cvs');
-      if (!existsSync(cvDir)) await mkdir(cvDir, { recursive: true });
-
-      // unique filename: timestamp_name_originalname
-      const safeName    = (fields.fullName || 'teacher').replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
-      const ext         = path.extname(cvFile.name) || '.pdf';
-      cvFileName        = `${Date.now()}_${safeName}${ext}`;
-      const savePath    = path.join(cvDir, cvFileName);
-
+      console.log('CV received:', cvFile.name, 'size:', cvFile.size, 'type:', cvFile.type);
       const buffer = Buffer.from(await cvFile.arrayBuffer());
-      await writeFile(savePath, buffer);
-
-      // build public URL — use NEXT_PUBLIC_SITE_URL if set, else fallback
-      const baseUrl    = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-      cvDownloadLink   = `${baseUrl}/cvs/${cvFileName}`;
+      console.log('CV buffer size:', buffer.length);
+      attachments.push({
+        filename:    cvFile.name,
+        content:     buffer,
+        contentType: cvFile.type || 'application/octet-stream',
+      });
+    } else {
+      console.log('No CV file received');
     }
 
     /* ── Admin email ── */
     await transporter.sendMail({
-      from:    `"Ayaz Ahmad Academy" <${process.env.EMAIL_USER}>`,
-      to:      process.env.EMAIL_USER,
-      replyTo: userEmail || process.env.EMAIL_USER,
-      subject: `New ${typeLabel} Registration - ${userName}`,
-      html:    buildAdminHtml(type, fields, cvDownloadLink, cvFileName),
+      from:        `"Ayaz Ahmad Academy" <${process.env.EMAIL_USER}>`,
+      to:          process.env.EMAIL_USER,
+      replyTo:     userEmail || process.env.EMAIL_USER,
+      subject:     `New ${typeLabel} Registration - ${userName}`,
+      html:        buildAdminHtml(type, fields, !!cvFile, cvFile?.name),
+      attachments,
       headers: {
         'X-Priority':      '3',
         'X-Mailer':        'Ayaz Ahmad Academy Mailer',

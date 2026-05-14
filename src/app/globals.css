@@ -104,9 +104,13 @@ h6 {
   font-size: 1rem;
   transition: all 0.3s ease;
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
   border: none;
   outline: none;
+  white-space: nowrap;
 }
 
 @media (min-width: 640px) {

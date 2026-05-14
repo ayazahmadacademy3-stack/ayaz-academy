@@ -4,6 +4,17 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './OurStory.module.css';
 
+const floatingShapes = [
+  { left: 6,  top: 12, color: '#F5A623', duration: '6s',   delay: '0s'   },
+  { left: 82, top: 8,  color: '#2B4C9F', duration: '8s',   delay: '0.7s' },
+  { left: 18, top: 68, color: '#F5A623', duration: '7s',   delay: '1.4s' },
+  { left: 90, top: 75, color: '#2B4C9F', duration: '5s',   delay: '2.1s' },
+  { left: 48, top: 85, color: '#F5A623', duration: '9s',   delay: '2.8s' },
+  { left: 63, top: 22, color: '#2B4C9F', duration: '6.5s', delay: '0.3s' },
+  { left: 4,  top: 52, color: '#F5A623', duration: '7.5s', delay: '1.8s' },
+  { left: 95, top: 42, color: '#2B4C9F', duration: '8.5s', delay: '3.2s' },
+];
+
 export default function OurStory() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -24,6 +35,32 @@ export default function OurStory() {
 
   return (
     <section ref={sectionRef} className={styles.storySection}>
+
+      {/* Animated background blobs */}
+      <div className={styles.blob1} />
+      <div className={styles.blob2} />
+      <div className={styles.blob3} />
+
+      {/* Grid overlay */}
+      <div className={styles.gridOverlay} />
+
+      {/* Floating rotating shapes */}
+      <div className={styles.shapesWrapper}>
+        {floatingShapes.map((s, i) => (
+          <div
+            key={i}
+            className={styles.shape}
+            style={{
+              left: `${s.left}%`,
+              top: `${s.top}%`,
+              background: s.color,
+              animationDuration: s.duration,
+              animationDelay: s.delay,
+            }}
+          />
+        ))}
+      </div>
+
       <div className={styles.container}>
         <div className={styles.contentWrapper}>
           

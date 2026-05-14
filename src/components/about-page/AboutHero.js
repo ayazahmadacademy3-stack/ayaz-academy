@@ -89,15 +89,8 @@ export default function AboutHero() {
             </button>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className={styles.scrollIndicator}>
-          <div className={styles.mouse}>
-            <div className={styles.wheel}></div>
-          </div>
-          <span className={styles.scrollText}>Scroll to explore</span>
-        </div>
       </div>
+
     </section>
   );
 }

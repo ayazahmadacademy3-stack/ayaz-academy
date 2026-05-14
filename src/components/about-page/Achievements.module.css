@@ -1,120 +1,315 @@
-.achievementsSection {
-  padding: 100px 0;
-  background: #ffffff;
+/* ══════════════════════════════════════
+   ACHIEVEMENTS — full redesign
+   ══════════════════════════════════════ */
+
+.section {
+  padding: 110px 0;
+  background: linear-gradient(160deg, #0d1230 0%, #111827 40%, #0a1628 100%);
+  position: relative;
+  overflow: hidden;
 }
 
+/* ── Diagonal stripes ── */
+.stripes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 60px,
+    rgba(255,255,255,0.012) 60px,
+    rgba(255,255,255,0.012) 61px
+  );
+}
+
+/* ── Orbs ── */
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  animation: orbFloat ease-in-out infinite;
+}
+.orb1 {
+  width: 560px; height: 560px;
+  top: -160px; left: -120px;
+  background: radial-gradient(circle, rgba(245,166,35,0.13) 0%, transparent 70%);
+  animation-duration: 13s;
+}
+.orb2 {
+  width: 480px; height: 480px;
+  bottom: -140px; right: -100px;
+  background: radial-gradient(circle, rgba(74,124,247,0.13) 0%, transparent 70%);
+  animation-duration: 11s;
+  animation-delay: 3s;
+}
+.orb3 {
+  width: 320px; height: 320px;
+  top: 40%; left: 48%;
+  background: radial-gradient(circle, rgba(43,76,159,0.08) 0%, transparent 70%);
+  animation-duration: 17s;
+  animation-delay: 6s;
+}
+
+/* ── Dot grid ── */
+.dotGrid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.45;
+}
+
+/* ── Particles ── */
+.particlesWrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particlePulse ease-in-out infinite;
+}
+
+/* ── Container ── */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 60px;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
+/* ── Header ── */
+.header { text-align: center; margin-bottom: 72px; }
 
-.header.visible {
-  opacity: 1;
-  transform: translateY(0);
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,166,35,0.1);
+  border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 9999px;
+  padding: 8px 22px;
+  margin-bottom: 22px;
+  color: #F5A623;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.pillDot {
+  width: 7px; height: 7px;
+  background: #F5A623;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .heading {
   font-size: 48px;
   font-weight: 800;
-  color: #1a1a1a;
-  margin-bottom: 20px;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 18px;
 }
-
 .highlight {
   background: linear-gradient(135deg, #F5A623, #ff8c00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .divider {
-  width: 80px;
-  height: 4px;
+  width: 80px; height: 4px;
   background: linear-gradient(90deg, #F5A623, #ff8c00);
   border-radius: 2px;
+  margin: 0 auto 18px;
+}
+.subtitle {
+  font-size: 17px;
+  color: #9ca3af;
+  max-width: 520px;
   margin: 0 auto;
+  line-height: 1.7;
 }
 
-.achievementsGrid {
+/* ── Grid ── */
+.grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 28px;
 }
 
-.achievementCard {
-  background: linear-gradient(135deg, rgba(245, 166, 35, 0.05), rgba(255, 140, 0, 0.02));
-  border: 2px solid #f3f4f6;
-  border-radius: 20px;
-  padding: 40px 20px;
+/* ── Card ── */
+.card {
+  position: relative;
+  border-radius: 24px;
+  padding: 40px 28px 32px;
   text-align: center;
-  transition: all 0.4s ease;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 32px rgba(0,0,0,0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  cursor: default;
+}
+.card:hover {
+  border-color: rgba(245,166,35,0.3);
+  box-shadow: 0 20px 56px rgba(0,0,0,0.45);
+  transform: translateY(-12px) scale(1.02);
+}
+
+/* top accent bar */
+.cardTopBar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
   opacity: 0;
-  transform: translateY(30px);
+  transition: opacity 0.4s ease;
+}
+.card:hover .cardTopBar { opacity: 1; }
+
+/* corner glow */
+.cardGlow {
+  position: absolute;
+  top: -36px; right: -36px;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.card:hover .cardGlow { opacity: 0.4; }
+
+/* tag */
+.tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 22px;
 }
 
-.achievementCard.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* icon box */
+.iconBox {
+  position: relative;
+  width: 68px; height: 68px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
-.achievementCard:hover {
-  border-color: #F5A623;
-  box-shadow: 0 20px 40px rgba(245, 166, 35, 0.15);
-  transform: translateY(-10px);
+.iconBox svg {
+  width: 32px; height: 32px;
+  color: white;
 }
+.card:hover .iconBox { transform: scale(1.12) rotate(6deg); }
 
-.icon {
-  font-size: 50px;
-  margin-bottom: 20px;
+/* pulse ring */
+.iconRing {
+  position: absolute;
+  inset: -6px;
+  border-radius: 24px;
+  border: 2px solid;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: ringPulse 1.6s ease-in-out infinite;
 }
+.card:hover .iconRing { opacity: 1; }
 
-.number {
-  font-size: 40px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #F5A623, #ff8c00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* counter number */
+.counter {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1;
   margin-bottom: 10px;
 }
 
+/* expanding divider */
+.cardDivider {
+  height: 2px;
+  width: 40px;
+  border-radius: 2px;
+  margin: 0 auto 12px;
+  transition: width 0.4s ease;
+}
+.card:hover .cardDivider { width: 72px; }
+
+/* label */
 .label {
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+.sublabel {
+  font-size: 12px;
   color: #6b7280;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  margin-bottom: 20px;
 }
 
+/* progress bar */
+.progressTrack {
+  width: 100%;
+  height: 3px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  border-radius: 9999px;
+}
+
+/* watermark */
+.watermark {
+  position: absolute;
+  bottom: 10px; right: 16px;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Animations ── */
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-26px); }
+}
+@keyframes particlePulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.55; transform: scale(1.7); }
+}
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.6; }
+  50%       { transform: scale(1.15); opacity: 0.2; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-  .achievementsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .heading {
-    font-size: 40px;
-  }
+  .grid    { grid-template-columns: repeat(2, 1fr); }
+  .heading { font-size: 40px; }
 }
-
-@media (max-width: 768px) {
-  .achievementsSection {
-    padding: 60px 0;
-  }
-
-  .heading {
-    font-size: 32px;
-  }
-
-  .achievementsGrid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 640px) {
+  .section { padding: 70px 0; }
+  .heading { font-size: 32px; }
+  .grid    { grid-template-columns: 1fr; gap: 20px; }
+  .card    { padding: 32px 20px 24px; }
+  .counter { font-size: 36px; }
 }

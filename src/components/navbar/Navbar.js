@@ -48,10 +48,10 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-1">
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/about">About Us</NavLink>
-            <NavLink href="/courses">Courses</NavLink>
-            <NavLink href="/faculty">Faculty</NavLink>
-            <NavLink href="/contact">Contact</NavLink>
+            <NavLink href="/pages/about">About Us</NavLink>
+            <NavLink href="/pages/courses">Courses</NavLink>
+            <NavLink href="/pages/faculty">Faculty</NavLink>
+            <NavLink href="/pages/contact">Contact</NavLink>
             <Link 
               href="/enroll" 
               className="ml-4 relative group overflow-hidden bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#F5A623]/30"
@@ -84,10 +84,10 @@ export default function Navbar() {
         >
           <div className="flex flex-col space-y-2 pb-4">
             <MobileNavLink href="/">Home</MobileNavLink>
-            <MobileNavLink href="/about">About Us</MobileNavLink>
-            <MobileNavLink href="/courses">Courses</MobileNavLink>
-            <MobileNavLink href="/faculty">Faculty</MobileNavLink>
-            <MobileNavLink href="/contact">Contact</MobileNavLink>
+            <MobileNavLink href="/pages/about">About Us</MobileNavLink>
+            <MobileNavLink href="/pages/courses">Courses</MobileNavLink>
+            <MobileNavLink href="/pages/faculty">Faculty</MobileNavLink>
+            <MobileNavLink href="/pages/contact">Contact</MobileNavLink>
             <Link 
               href="/enroll" 
               className="relative group overflow-hidden bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold transition-all text-center mt-2 hover:shadow-lg hover:shadow-[#F5A623]/30"

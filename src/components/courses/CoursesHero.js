@@ -21,10 +21,14 @@ const particles = [
 ];
 
 export default function CoursesHero() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible]   = useState(false);
+  const [animated, setAnimated]     = useState(false); // true after entrance done
 
   useEffect(() => {
     setIsVisible(true);
+    // after longest card animation finishes (0.3 + 3*0.1 + 0.8 = ~1.4s), mark done
+    const t = setTimeout(() => setAnimated(true), 1500);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -79,11 +83,14 @@ export default function CoursesHero() {
           {/* Stats grid */}
           <div className={styles.statsGrid}>
             {stats.map((stat, index) => (
-              <div key={index} className={styles.statCard} style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: `opacity 0.8s ease ${0.3 + index * 0.1}s, transform 0.8s ease ${0.3 + index * 0.1}s`,
-              }}>
+              <div
+                key={index}
+                className={`${styles.statCard} ${isVisible ? styles.statCardVisible : ''}`}
+                style={{
+                  // during entrance: staggered delay; after: no delay so hover is instant
+                  transitionDelay: animated ? '0s' : `${0.3 + index * 0.1}s`,
+                }}
+              >
                 <div className={styles.statIcon}>
                   {stat.icon}
                 </div>

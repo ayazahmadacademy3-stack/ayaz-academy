@@ -54,11 +54,18 @@ const particles = [
 
 export default function WhyChooseCourses() {
   const [isVisible, setIsVisible] = useState(false);
+  const [animated, setAnimated]   = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+          setTimeout(() => setAnimated(true), 1600);
+        }
+      },
       { threshold: 0.15 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -119,12 +126,9 @@ export default function WhyChooseCourses() {
             return (
               <div
                 key={index}
-                className={styles.reasonCard}
+                className={`${styles.reasonCard} ${isVisible ? styles.reasonCardVisible : ''}`}
                 style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.93)',
-                  transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 0.1}s,
-                               transform 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 0.1}s`,
+                  transitionDelay: animated ? '0s' : `${index * 0.1}s`,
                   '--accent': accent,
                   '--accent-dark': accentDark,
                   '--accent-alpha': accentA,
@@ -137,7 +141,7 @@ export default function WhyChooseCourses() {
                 <div className={styles.cornerGlow} />
 
                 {/* Number watermark */}
-                <span className={styles.watermark}>0{index + 1}</span>
+                {/* <span className={styles.watermark}>0{index + 1}</span> */}
 
                 {/* Icon */}
                 <div className={styles.iconBox}>

@@ -225,13 +225,25 @@
   border-radius: 24px;
   padding: 30px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  /* entrance state */
+  opacity: 0;
+  transform: translateY(40px) scale(0.93);
+  /* all hover transitions — no inline override */
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+              transform 0.4s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.courseCardVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .courseCard:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.01);
   border-color: var(--accent);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent);
 }
 
 .topBar {

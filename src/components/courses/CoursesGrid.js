@@ -108,12 +108,20 @@ const particles = [
 
 export default function CoursesGrid() {
   const [isVisible, setIsVisible] = useState(false);
-  const [filter, setFilter] = useState('all');
+  const [animated, setAnimated]   = useState(false);
+  const [filter, setFilter]       = useState('all');
   const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+          // after all cards finish entrance (~0.7s + 9*0.08s = ~1.5s), remove delay
+          setTimeout(() => setAnimated(true), 1600);
+        }
+      },
       { threshold: 0.15 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -203,12 +211,9 @@ export default function CoursesGrid() {
             return (
               <div
                 key={index}
-                className={styles.courseCard}
+                className={`${styles.courseCard} ${isVisible ? styles.courseCardVisible : ''}`}
                 style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.93)',
-                  transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 0.08}s,
-                               transform 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 0.08}s`,
+                  transitionDelay: animated ? '0s' : `${index * 0.08}s`,
                   '--accent': accent,
                   '--accent-dark': accentDark,
                   '--accent-alpha': accentA,
@@ -265,13 +270,13 @@ export default function CoursesGrid() {
                 </div>
 
                 {/* CTA Button */}
-                <button className={styles.ctaBtn}>
+                {/* <button className={styles.ctaBtn}>
                   <span>Learn More</span>
                   <ArrowRight className="w-5 h-5" />
-                </button>
+                </button> */}
 
                 {/* Watermark */}
-                <span className={styles.watermark}>{String(index + 1).padStart(2, '0')}</span>
+                {/* <span className={styles.watermark}>{String(index + 1).padStart(2, '0')}</span> */}
               </div>
             );
           })}

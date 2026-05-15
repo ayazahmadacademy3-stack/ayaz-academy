@@ -183,10 +183,10 @@ export default function OurValues() {
                   style={{ background: accent }} />
 
                 {/* number watermark */}
-                <span className={styles.cardNumber}
+                {/* <span className={styles.cardNumber}
                   style={{ color: `${accentA}0.06)` }}>
                   0{index + 1}
-                </span>
+                </span> */}
 
                 {/* icon */}
                 <div

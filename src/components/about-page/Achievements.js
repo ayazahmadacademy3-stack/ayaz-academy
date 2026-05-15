@@ -225,10 +225,10 @@ export default function Achievements() {
                 </div>
 
                 {/* watermark number */}
-                <span className={styles.watermark}
+                {/* <span className={styles.watermark}
                   style={{ color: `${accentA}0.05)` }}>
                   0{index + 1}
-                </span>
+                </span> */}
               </div>
             );
           })}

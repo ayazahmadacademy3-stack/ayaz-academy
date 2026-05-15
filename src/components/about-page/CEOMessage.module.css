@@ -1,0 +1,637 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CEO MESSAGE SECTION - Fully Animated & Attractive
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.section {
+  position: relative;
+  padding: 100px 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── ANIMATED BACKGROUNDS ── */
+
+/* Diagonal stripes */
+.stripes {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 80px,
+    rgba(245, 166, 35, 0.02) 80px,
+    rgba(245, 166, 35, 0.02) 160px
+  );
+  animation: stripeMove 20s linear infinite;
+}
+
+@keyframes stripeMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(160px); }
+}
+
+/* Glowing orbs */
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #F5A623, transparent);
+  top: -200px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.orb2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #4a7cf7, transparent);
+  bottom: -150px;
+  right: -100px;
+  animation-delay: 2s;
+}
+
+.orb3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #F5A623, transparent);
+  top: 50%;
+  right: 10%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+/* Dot grid */
+.dotGrid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.4;
+}
+
+/* Floating particles */
+.particlesWrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+}
+
+/* ── HEADER ── */
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #F5A623;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.pillDot {
+  width: 6px;
+  height: 6px;
+  background: #F5A623;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.highlight {
+  background: linear-gradient(135deg, #F5A623, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #F5A623, #ff8c00);
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(245, 166, 35, 0.5);
+}
+
+/* ── MAIN CARD ── */
+
+.mainCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mainCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.topBar {
+  height: 4px;
+  background: linear-gradient(90deg, #F5A623, #ff8c00, #4a7cf7);
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.cornerGlow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle at top right, rgba(245, 166, 35, 0.2), transparent);
+  pointer-events: none;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0;
+}
+
+@media (max-width: 968px) {
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── LEFT SIDE - AVATAR ── */
+
+.leftSide {
+  position: relative;
+  background: linear-gradient(135deg, #F5A623, #ff8c00);
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Decorative circles */
+.decorCircle1, .decorCircle2, .decorCircle3 {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: rotate 20s linear infinite;
+}
+
+.decorCircle1 {
+  width: 200px;
+  height: 200px;
+  top: -80px;
+  right: -80px;
+}
+
+.decorCircle2 {
+  width: 150px;
+  height: 150px;
+  bottom: -60px;
+  left: -60px;
+  animation-delay: 2s;
+}
+
+.decorCircle3 {
+  width: 100px;
+  height: 100px;
+  top: 50%;
+  left: -30px;
+  animation-delay: 4s;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Avatar container */
+.avatarContainer {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+.avatarRing1, .avatarRing2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+.avatarRing1 {
+  width: 220px;
+  height: 220px;
+  animation-delay: 0s;
+}
+
+.avatarRing2 {
+  width: 260px;
+  height: 260px;
+  animation-delay: 1.5s;
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+}
+
+.avatarCircle {
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 4px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: avatarFloat 4s ease-in-out infinite;
+}
+
+@keyframes avatarFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.avatarIcon {
+  width: 100px;
+  height: 100px;
+  color: #ffffff;
+}
+
+/* Quote badge */
+.quoteBadge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  color: #F5A623;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Sparkles */
+.sparkle1, .sparkle2 {
+  position: absolute;
+  color: #ffffff;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.sparkle1 {
+  width: 24px;
+  height: 24px;
+  top: 20px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.sparkle2 {
+  width: 20px;
+  height: 20px;
+  bottom: 30px;
+  right: 30px;
+  animation-delay: 1s;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+}
+
+/* CEO Name on left */
+.ceoNameLeft {
+  text-align: center;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.ceoNameLeft h3 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ceoNameLeft p {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ── RIGHT SIDE - CONTENT ── */
+
+.rightSide {
+  padding: 50px 60px;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .rightSide {
+    padding: 40px 30px;
+  }
+}
+
+.openingQuote {
+  width: 48px;
+  height: 48px;
+  color: rgba(245, 166, 35, 0.3);
+  margin-bottom: 30px;
+}
+
+.messageContent {
+  margin-bottom: 40px;
+}
+
+.paragraph {
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 24px;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.brandName {
+  font-weight: 700;
+  color: #F5A623;
+}
+
+.accent {
+  font-weight: 700;
+  color: #F5A623;
+  background: linear-gradient(135deg, #F5A623, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.paragraph strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Signature divider */
+.signatureDivider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.signatureLine {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.5), transparent);
+}
+
+.signatureIcon {
+  width: 20px;
+  height: 20px;
+  color: #F5A623;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+/* CEO Info */
+.ceoInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ceoDetails h4 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.ceoDetails p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #F5A623;
+  margin-bottom: 4px;
+}
+
+.ceoDetails span {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ceoDecor {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.decorBar1, .decorBar2, .decorBar3 {
+  height: 4px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #F5A623, #ff8c00);
+}
+
+.decorBar1 {
+  width: 40px;
+}
+
+.decorBar2 {
+  width: 28px;
+}
+
+.decorBar3 {
+  width: 16px;
+}
+
+/* ── BOTTOM HIGHLIGHTS ── */
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .highlightsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.highlightCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.highlightCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.highlightIcon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.4);
+}
+
+.highlightText {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.highlightGlow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--accent), transparent);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* ── RESPONSIVE ── */
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 36px;
+  }
+
+  .leftSide {
+    padding: 50px 30px;
+  }
+
+  .avatarCircle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .avatarIcon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .avatarRing1 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .avatarRing2 {
+    width: 220px;
+    height: 220px;
+  }
+
+  .ceoNameLeft h3 {
+    font-size: 24px;
+  }
+
+  .paragraph {
+    font-size: 16px;
+  }
+
+  .ceoInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}

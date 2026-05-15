@@ -3,7 +3,7 @@ import AboutHero from '@/components/about-page/AboutHero';
 import OurStory from '@/components/about-page/OurStory';
 import OurMission from '@/components/about-page/OurMission';
 import OurValues from '@/components/about-page/OurValues';
-import TeamSection from '@/components/about-page/TeamSection';
+import CEOMessage from '@/components/about-page/CEOMessage';
 import Achievements from '@/components/about-page/Achievements';
 import Footer from '@/components/footer/Footer';
 
@@ -20,7 +20,7 @@ export default function AboutPage() {
       <OurStory />
       <OurMission />
       <OurValues />
-      <TeamSection />
+      <CEOMessage />
       <Achievements />
       <Footer />
     </div>

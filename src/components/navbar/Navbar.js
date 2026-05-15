@@ -53,7 +53,7 @@ export default function Navbar() {
             <NavLink href="/pages/faculty">Faculty</NavLink>
             {/* <NavLink href="/pages/contact">Enroll Now</NavLink> */}
             <Link 
-              href="/enroll" 
+              href="/pages/enroll" 
               className="ml-4 relative group overflow-hidden bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#F5A623]/30"
             >
               <span className="relative z-10 transition-colors duration-300 group-hover:text-[#2B4C9F]">Register Now</span>

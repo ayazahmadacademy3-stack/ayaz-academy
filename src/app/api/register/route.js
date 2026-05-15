@@ -177,10 +177,14 @@ const buildUserHtml = (type, name) => {
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
           ${steps.map((step, i) => `
           <tr>
-            <td style="padding:10px 0;vertical-align:top;width:40px;">
-              <div style="width:28px;height:28px;background:linear-gradient(135deg,${accent},${accentDark});border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#ffffff;text-align:center;line-height:28px;">
-                ${i + 1}
-              </div>
+            <td style="padding:10px 0;vertical-align:middle;width:50px;text-align:center;">
+              <table cellpadding="0" cellspacing="0" style="width:36px;height:36px;background:linear-gradient(135deg,${accent},${accentDark});border-radius:50%;margin:0 auto;">
+                <tr>
+                  <td style="text-align:center;vertical-align:middle;font-size:15px;font-weight:800;color:#ffffff;">
+                    ${i + 1}
+                  </td>
+                </tr>
+              </table>
             </td>
             <td style="padding:10px 0 10px 12px;font-size:14px;color:#374151;vertical-align:middle;border-bottom:1px solid #f1f5f9;">
               ${step}

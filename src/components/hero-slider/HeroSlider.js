@@ -49,7 +49,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <div className="relative h-screen overflow-hidden bg-black mt-4">
+    <div className="relative h-screen overflow-hidden bg-black mt-4 main-website">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-64 h-64 bg-[#F5A623] rounded-full blur-3xl animate-pulse"></div>
@@ -101,11 +101,11 @@ export default function HeroSlider() {
 
                   {/* Buttons */}
                   <div className="flex flex-wrap gap-4 pt-4">
-                    <button className="group relative overflow-hidden bg-[#F5A623] text-black px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:shadow-[#F5A623]/50 hover:scale-105">
-                      <span className="relative z-10">{slide.primaryBtn}</span>
+                    <button className="btn-primary">
+                      <span>{slide.primaryBtn}</span>
                     </button>
-                    <button className="group relative overflow-hidden border-2 border-[#F5A623] text-[#F5A623] px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:bg-[#F5A623] hover:text-black hover:scale-105">
-                      {slide.secondaryBtn}
+                    <button className="btn-outline">
+                      <span>{slide.secondaryBtn}</span>
                     </button>
                   </div>
                 </div>

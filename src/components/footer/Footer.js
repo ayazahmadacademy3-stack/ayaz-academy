@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
+import './footer.module.css'
 
 export default function Footer() {
   const [hoveredLink, setHoveredLink] = useState(null);
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [particles, setParticles] = useState([]);
   const [showScrollBtn, setShowScrollBtn] = useState(false);
 
@@ -29,6 +32,286 @@ export default function Footer() {
     }));
     setParticles(newParticles);
   }, []);
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validate email
+    if (!email || !email.trim()) {
+      Swal.fire({
+        title: '<span style="color:#ffffff;font-size:20px;font-weight:800;">Email Required</span>',
+        html: `
+          <div style="text-align:center;padding:4px 0;">
+            <div style="width:60px;height:60px;border-radius:50%;
+                        background:linear-gradient(135deg,#f59e0b,#d97706);
+                        display:flex;align-items:center;justify-content:center;
+                        margin:0 auto 20px;
+                        box-shadow:0 8px 24px rgba(245,158,11,0.4);">
+              <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                  d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+              </svg>
+            </div>
+            <p style="margin:0;color:#9ca3af;font-size:14px;">
+              Please enter your email address to subscribe to our newsletter.
+            </p>
+          </div>`,
+        background: 'linear-gradient(145deg,#1a1f3a,#0f1629)',
+        color: '#ffffff',
+        confirmButtonText: 'Got it',
+        confirmButtonColor: '#f59e0b',
+        customClass: {
+          popup: 'swal-custom-popup',
+          confirmButton: 'swal-custom-confirm-warn',
+        },
+        didOpen: () => {
+          const style = document.createElement('style');
+          style.textContent = `
+            .swal-custom-popup {
+              border: 1px solid rgba(245,158,11,0.2) !important;
+              border-radius: 20px !important;
+              box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+              padding: 36px 32px !important;
+            }
+            .swal-custom-confirm-warn {
+              border-radius: 10px !important;
+              font-weight: 700 !important;
+              padding: 12px 36px !important;
+              font-size: 15px !important;
+              box-shadow: 0 6px 20px rgba(245,158,11,0.4) !important;
+            }
+            .swal2-title { padding: 0 0 16px !important; }
+          `;
+          document.head.appendChild(style);
+        },
+      });
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Swal.fire({
+        title: '<span style="color:#ffffff;font-size:20px;font-weight:800;">Invalid Email</span>',
+        html: `
+          <div style="text-align:center;padding:4px 0;">
+            <div style="width:60px;height:60px;border-radius:50%;
+                        background:linear-gradient(135deg,#f59e0b,#d97706);
+                        display:flex;align-items:center;justify-content:center;
+                        margin:0 auto 20px;
+                        box-shadow:0 8px 24px rgba(245,158,11,0.4);">
+              <svg width="28" height="28" fill="none" stroke="white" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                  d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+              </svg>
+            </div>
+            <p style="margin:0;color:#9ca3af;font-size:14px;">
+              Please enter a valid email address (e.g., example@email.com).
+            </p>
+          </div>`,
+        background: 'linear-gradient(145deg,#1a1f3a,#0f1629)',
+        color: '#ffffff',
+        confirmButtonText: 'Got it',
+        confirmButtonColor: '#f59e0b',
+        customClass: {
+          popup: 'swal-custom-popup',
+          confirmButton: 'swal-custom-confirm-warn',
+        },
+        didOpen: () => {
+          const style = document.createElement('style');
+          style.textContent = `
+            .swal-custom-popup {
+              border: 1px solid rgba(245,158,11,0.2) !important;
+              border-radius: 20px !important;
+              box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+              padding: 36px 32px !important;
+            }
+            .swal-custom-confirm-warn {
+              border-radius: 10px !important;
+              font-weight: 700 !important;
+              padding: 12px 36px !important;
+              font-size: 15px !important;
+              box-shadow: 0 6px 20px rgba(245,158,11,0.4) !important;
+            }
+            .swal2-title { padding: 0 0 16px !important; }
+          `;
+          document.head.appendChild(style);
+        },
+      });
+      return;
+    }
+
+    // Show processing popup
+    Swal.fire({
+      title: '<span style="color:#ffffff;font-size:20px;font-weight:800;">Processing Subscription…</span>',
+      html: `
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:8px 0;">
+          <div style="position:relative;width:64px;height:64px;">
+            <div style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(255,255,255,0.1);"></div>
+            <div style="position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:#F5A623;animation:swal-spin 0.8s linear infinite;"></div>
+            <div style="position:absolute;inset:8px;border-radius:50%;background:linear-gradient(135deg,#F5A623,#cc7a00);display:flex;align-items:center;justify-content:center;">
+              <svg width="22" height="22" fill="none" stroke="white" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+          </div>
+          <p style="margin:0;color:#9ca3af;font-size:14px;line-height:1.6;">
+            Subscribing you to our newsletter…
+          </p>
+        </div>`,
+      background: 'linear-gradient(145deg,#1a1f3a,#0f1629)',
+      color: '#ffffff',
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      customClass: { popup: 'swal-custom-popup' },
+      didOpen: () => {
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes swal-spin { to { transform: rotate(360deg); } }
+          .swal-custom-popup {
+            border: 1px solid rgba(255,255,255,0.1) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+            padding: 36px 32px !important;
+          }
+          .swal2-title { padding: 0 0 16px !important; }
+        `;
+        document.head.appendChild(style);
+      },
+    });
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Success popup
+        await Swal.fire({
+          title: '<span style="color:#ffffff;font-size:22px;font-weight:800;">Successfully Subscribed! 🎉</span>',
+          html: `
+            <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:4px 0;">
+              <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#F5A623,#cc7a00);
+                          display:flex;align-items:center;justify-content:center;
+                          box-shadow:0 8px 28px rgba(245,166,35,0.45);
+                          animation:swal-pop 0.5s cubic-bezier(0.22,1,0.36,1) both;">
+                <svg width="36" height="36" fill="none" stroke="white" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <div style="text-align:center;">
+                <p style="margin:0 0 8px;color:#d1d5db;font-size:15px;line-height:1.7;">
+                  Thank you for subscribing to our newsletter!<br>
+                  You will now stay updated with all our latest news and events.
+                </p>
+                <div style="display:inline-block;background:rgba(245,166,35,0.12);
+                            border:1px solid rgba(245,166,35,0.3);
+                            border-radius:20px;padding:6px 16px;font-size:13px;color:#F5A623;font-weight:600;">
+                  📧 Confirmation email sent to <strong>${email}</strong>
+                </div>
+              </div>
+              <p style="margin:0;color:#6b7280;font-size:13px;text-align:center;line-height:1.6;">
+                Check your inbox for a welcome message from us.<br>
+                We'll keep you informed about courses, events, and educational insights.
+              </p>
+            </div>`,
+          background: 'linear-gradient(145deg,#1a1f3a,#0f1629)',
+          color: '#ffffff',
+          confirmButtonText: 'Done',
+          confirmButtonColor: '#F5A623',
+          customClass: {
+            popup: 'swal-custom-popup',
+            confirmButton: 'swal-custom-confirm',
+          },
+          didOpen: () => {
+            const style = document.createElement('style');
+            style.textContent = `
+              @keyframes swal-pop {
+                from { transform: scale(0); opacity: 0; }
+                to   { transform: scale(1); opacity: 1; }
+              }
+              .swal-custom-popup {
+                border: 1px solid rgba(255,255,255,0.1) !important;
+                border-radius: 20px !important;
+                box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+                padding: 36px 32px !important;
+              }
+              .swal-custom-confirm {
+                border-radius: 10px !important;
+                font-weight: 700 !important;
+                padding: 12px 36px !important;
+                font-size: 15px !important;
+                box-shadow: 0 6px 20px rgba(245,166,35,0.4) !important;
+              }
+              .swal2-title { padding: 0 0 16px !important; }
+            `;
+            document.head.appendChild(style);
+          },
+        });
+        
+        // Clear the email input
+        setEmail('');
+      } else {
+        throw new Error(data.error || 'Subscription failed');
+      }
+    } catch (error) {
+      // Error popup
+      Swal.fire({
+        title: '<span style="color:#ffffff;font-size:20px;font-weight:800;">Subscription Failed</span>',
+        html: `
+          <div style="text-align:center;padding:4px 0;">
+            <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#ef4444,#b91c1c);
+                        display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+                        box-shadow:0 8px 24px rgba(239,68,68,0.4);">
+              <svg width="32" height="32" fill="none" stroke="white" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </div>
+            <p style="margin:0;color:#9ca3af;font-size:14px;line-height:1.7;">
+              ${error.message || 'Network error. Please check your connection and try again.'}
+            </p>
+          </div>`,
+        background: 'linear-gradient(145deg,#1a1f3a,#0f1629)',
+        color: '#ffffff',
+        confirmButtonText: 'Try Again',
+        confirmButtonColor: '#ef4444',
+        customClass: {
+          popup: 'swal-custom-popup',
+          confirmButton: 'swal-custom-confirm-error',
+        },
+        didOpen: () => {
+          const style = document.createElement('style');
+          style.textContent = `
+            .swal-custom-popup {
+              border: 1px solid rgba(239,68,68,0.2) !important;
+              border-radius: 20px !important;
+              box-shadow: 0 24px 64px rgba(0,0,0,0.6) !important;
+              padding: 36px 32px !important;
+            }
+            .swal-custom-confirm-error {
+              border-radius: 10px !important;
+              font-weight: 700 !important;
+              padding: 12px 36px !important;
+              font-size: 15px !important;
+            }
+            .swal2-title { padding: 0 0 16px !important; }
+          `;
+          document.head.appendChild(style);
+        },
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const socialLinks = [
     { 
@@ -147,25 +430,25 @@ export default function Footer() {
             <div className="lg:col-span-5">
               <div className="relative group">
                 {/* Logo & Brand */}
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-[#F5A623] blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                    {/* Academy Icon */}
-                    <div className="relative w-16 h-16 bg-gradient-to-br from-[#2B4C9F] to-[#1a3a7a] rounded-2xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl">
-                      <svg className="w-9 h-9 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                      </svg>
+                <div className="flex items-center space-x-5 mb-6">
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-[#F5A623] blur-2xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
+                    {/* Academy Logo Image */}
+                    <div className="relative w-24 h-24 rounded-3xl overflow-hidden transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-500 shadow-2xl border-2 border-white/10">
+                      <img 
+                        src="/academy-logo.png" 
+                        alt="Ayaz Ahmad Academy" 
+                        className="w-full h-full object-contain bg-white p-3 footer-logo"
+                      />
                       {/* Corner Accent */}
-                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#F5A623] rounded-full animate-pulse"></div>
+                      <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#F5A623] rounded-full animate-pulse shadow-lg shadow-[#F5A623]/50"></div>
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+                    <h3 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-gray-300 mb-1">
                       Ayaz Ahmad
                     </h3>
-                    <p className="text-[#F5A623] font-semibold text-lg">Academy</p>
+                    <p className="text-[#F5A623] font-bold text-xl tracking-wide">Academy</p>
                   </div>
                 </div>
 
@@ -179,18 +462,23 @@ export default function Footer() {
                     <span className="w-2 h-2 bg-[#F5A623] rounded-full mr-3 animate-pulse"></span>
                     Subscribe to Newsletter
                   </h4>
-                  <div className="relative group">
+                  <form onSubmit={handleNewsletterSubmit} className="relative group">
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
-                      className="w-full px-6 py-4 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#F5A623] transition-all duration-300"
+                      disabled={isSubmitting}
+                      className="w-full px-6 py-4 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#F5A623] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
-                    <button className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-gradient-to-r from-[#F5A623] to-[#ff8c00] rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-[#F5A623]/50 transition-all duration-300 hover:scale-105">
-                      Subscribe
+                    <button 
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-gradient-to-r from-[#F5A623] to-[#ff8c00] rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-[#F5A623]/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    >
+                      {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                     </button>
-                  </div>
+                  </form>
                 </div>
 
                 {/* Social Links */}
@@ -238,14 +526,20 @@ export default function Footer() {
                   <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
                 </h4>
                 <ul className="space-y-3">
-                  {['Home', 'About Us', 'Contact-Us', 'Courses', 'Faculty'].map((link, index) => (
+                  {[
+                    { name: 'Home', href: '/' },
+                    { name: 'About Us', href: '/pages/about' },
+                    { name: 'Contact Us', href: '/pages/contact' },
+                    { name: 'Courses', href: '/pages/courses' },
+                    { name: 'Faculty', href: '/pages/faculty' }
+                  ].map((link, index) => (
                     <li key={index}>
                       <Link
-                        href={`/${link.toLowerCase().replace(' ', '-')}`}
+                        href={link.href}
                         className="group flex items-center text-gray-300 hover:text-[#F5A623] transition-all duration-300"
                       >
                         <span className="w-0 group-hover:w-6 h-px bg-[#F5A623] transition-all duration-300 mr-0 group-hover:mr-3"></span>
-                        <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{link}</span>
+                        <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{link.name}</span>
                       </Link>
                     </li>
                   ))}
@@ -259,14 +553,21 @@ export default function Footer() {
                   <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
                 </h4>
                 <ul className="space-y-3">
-                  {['O Level', 'A Level', 'Mathematics', 'Sciences', 'Business', 'Computer'].map((course, index) => (
+                  {[
+                    { name: 'O Level', href: '/pages/courses' },
+                    { name: 'A Level', href: '/pages/courses' },
+                    { name: 'Mathematics', href: '/pages/courses' },
+                    { name: 'Sciences', href: '/pages/courses' },
+                    { name: 'Business', href: '/pages/courses' },
+                    { name: 'Computer', href: '/pages/courses' }
+                  ].map((course, index) => (
                     <li key={index}>
                       <Link
-                        href={`/courses/${course.toLowerCase()}`}
+                        href={course.href}
                         className="group flex items-center text-gray-300 hover:text-[#F5A623] transition-all duration-300"
                       >
                         <span className="w-0 group-hover:w-6 h-px bg-[#F5A623] transition-all duration-300 mr-0 group-hover:mr-3"></span>
-                        <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{course}</span>
+                        <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{course.name}</span>
                       </Link>
                     </li>
                   ))}
@@ -398,7 +699,7 @@ export default function Footer() {
             <p className="text-sm text-gray-400">
               &copy; 2026 <span className="text-[#F5A623] font-semibold">Ayaz Ahmad Academy</span>. All rights reserved.
             </p>
-            <div className="flex items-center space-x-6 text-sm">
+            {/* <div className="flex items-center space-x-6 text-sm">
               <Link href="/privacy" className="text-gray-400 hover:text-[#F5A623] transition-colors">
                 Privacy Policy
               </Link>
@@ -410,7 +711,7 @@ export default function Footer() {
               <Link href="/sitemap" className="text-gray-400 hover:text-[#F5A623] transition-colors">
                 Sitemap
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

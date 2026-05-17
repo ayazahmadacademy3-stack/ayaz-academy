@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import './navbar.css'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,24 +19,24 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-300 main-navbar ${
         scrolled 
-          ? 'bg-[#1a2d5f] shadow-2xl py-3' 
-          : 'bg-gradient-to-r from-[#2B4C9F] via-[#1e3a8a] to-[#2B4C9F] py-4'
+          ? 'bg-[#1a2d5f] shadow-2xl py-2' 
+          : 'bg-gradient-to-r from-[#2B4C9F] via-[#1e3a8a] to-[#2B4C9F] py-2.5'
       }`}
     >
-      <div className="w-full px-6 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center">
+      <div className="w-full px-6 sm:px-8 lg:px-12 main-navbar">
+        <div className="flex justify-between items-center nav-material">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-4 group">
+          <Link href="/" className="flex items-center group">
             <Image
               src="/academy-logo.png"
               alt="Ayaz Ahmad Academy Logo"
-              width={90}
-              height={90}
-              className="object-contain transform group-hover:scale-105 transition-transform duration-300"
+              width={200}
+              height={200}
+              className="object-contain transform group-hover:scale-105 transition-transform duration-300 navbar-logo"
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col logo-right-item">
               <span className="text-2xl font-bold text-white ml-[-20px] tracking-wide">
                 Ayaz Ahmad Academy
               </span>

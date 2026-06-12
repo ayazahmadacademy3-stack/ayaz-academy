@@ -2,74 +2,85 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Mail, GraduationCap } from 'lucide-react';
+import Image from 'next/image';
 import styles from './FacultyBySubject.module.css';
 
 const facultyData = {
   Physics: [
     {
       name: 'Dr. Ahmed Hassan',
-      initials: 'AH',
+      image: '/images/faculty/ahmed-hassan.jpg',
       qualification: 'PhD in Physics',
       experience: '12 Years',
-      specialization: 'Mechanics & Thermodynamics',
+      board: 'Mechanics & Thermodynamics',
       bio: 'Expert in O & A Level Physics with research background',
       variant: 'orange',
     },
     {
       name: 'Sarah Khan',
-      initials: 'SK',
+      image: '/images/faculty/sarah-khan.jpg',
       qualification: 'MSc Physics',
       experience: '8 Years',
-      specialization: 'Electricity & Magnetism',
+      board: 'Electricity & Magnetism',
       bio: 'Passionate about making physics concepts clear',
       variant: 'blue',
     },
   ],
   Chemistry: [
-    {
-      name: 'Dr. Fatima Ali',
-      initials: 'FA',
-      qualification: 'PhD in Chemistry',
-      experience: '15 Years',
-      specialization: 'Organic Chemistry',
-      bio: 'Cambridge examiner with extensive teaching experience',
+     {
+      name: 'Osama Shahab',
+      image: '/chem-img/chem3.jpeg',
+      // qualification: 'MSc Chemistry',
+      experience: '7 Years',
+      course: "O-Levels (5070), IGCSE (0620), A-levels (9701)",
+      board: 'Cambridge and Edexcel',
+      // bio: 'Specialist in practical chemistry and lab work',
       variant: 'orange',
     },
     {
-      name: 'Usman Malik',
-      initials: 'UM',
-      qualification: 'MSc Chemistry',
-      experience: '10 Years',
-      specialization: 'Physical Chemistry',
-      bio: 'Specialist in practical chemistry and lab work',
+      name: 'Syed Mujeeb Hussain',
+      image: '/chem-img/chem2.jpeg',
+      // qualification: 'MSc Chemistry',
+      experience: '6 Years',
+      course: "O-Levels, IGCSE, A-levels, Edexcel IGCSE, Edexcel IAL",
+      board: 'Cambridge and Edexcel',
+      // bio: 'Specialist in practical chemistry and lab work',
       variant: 'blue',
     },
+    {
+      name: 'Sir Nayyer Ahmed',
+      image: '/chem-img/chem1.jpeg',
+      course: "Chemistry (GCE & IGCSE) (5070 & 0620)",
+      experience: "1 Year Experience at St. Patrick's High School & Karachi Public School Jauhar Campus, 1 Year Experience at DHA College and Schooling System",
+      board: 'Cambridge',
+      variant: 'orange',
+    }
   ],
   Mathematics: [
     {
       name: 'Prof. Ayaz Ahmad',
-      initials: 'AA',
+      image: '/images/faculty/ayaz-ahmad.jpg',
       qualification: 'MSc Mathematics',
       experience: '15+ Years',
-      specialization: 'Pure Math & Statistics',
+      board: 'Pure Math & Statistics',
       bio: 'Founder with passion for mathematical excellence',
       variant: 'orange',
     },
     {
       name: 'Zainab Ahmed',
-      initials: 'ZA',
+      image: '/images/faculty/zainab-ahmed.jpg',
       qualification: 'MSc Mathematics',
       experience: '9 Years',
-      specialization: 'Calculus & Algebra',
+      board: 'Calculus & Algebra',
       bio: 'Making complex mathematics simple and enjoyable',
       variant: 'blue',
     },
     {
       name: 'Hassan Raza',
-      initials: 'HR',
+      image: '/images/faculty/hassan-raza.jpg',
       qualification: 'BSc Mathematics',
       experience: '7 Years',
-      specialization: 'Mechanics & Statistics',
+      board: 'Mechanics & Statistics',
       bio: 'Young and energetic math educator',
       variant: 'orange',
     },
@@ -77,19 +88,19 @@ const facultyData = {
   Biology: [
     {
       name: 'Dr. Aisha Siddiqui',
-      initials: 'AS',
+      image: '/images/faculty/aisha-siddiqui.jpg',
       qualification: 'PhD in Biology',
       experience: '11 Years',
-      specialization: 'Cell Biology & Genetics',
+      board: 'Cell Biology & Genetics',
       bio: 'Research scientist turned passionate educator',
       variant: 'orange',
     },
     {
       name: 'Bilal Khan',
-      initials: 'BK',
+      image: '/images/faculty/bilal-khan.jpg',
       qualification: 'MSc Biology',
       experience: '8 Years',
-      specialization: 'Ecology & Evolution',
+      board: 'Ecology & Evolution',
       bio: 'Bringing biology to life with practical examples',
       variant: 'blue',
     },
@@ -97,59 +108,62 @@ const facultyData = {
   English: [
     {
       name: 'Maria Johnson',
-      initials: 'MJ',
+      image: '/images/faculty/maria-johnson.jpg',
       qualification: 'MA English Literature',
       experience: '10 Years',
-      specialization: 'Language & Composition',
+      board: 'Language & Composition',
       bio: 'Building strong communication and writing skills',
       variant: 'orange',
     },
     {
       name: 'Ali Raza',
-      initials: 'AR',
+      image: '/images/faculty/ali-raza.jpg',
       qualification: 'MA English',
       experience: '7 Years',
-      specialization: 'Literature & Comprehension',
+      board: 'Literature & Comprehension',
       bio: 'Passionate about English language mastery',
       variant: 'blue',
     },
   ],
   Urdu: [
-    {
-      name: 'Saba Ayaz',
-      initials: 'SA',
-      qualification: 'MA Urdu',
-      experience: '12 Years',
-      specialization: 'Urdu Literature & Grammar',
-      bio: 'CEO with deep love for Urdu language and culture',
+     {
+      name: 'Ali Mehdi',
+      image: '/urdu-img/urd1.jpeg',
+      imagePosition: '75% -15%',
+      // qualification: 'MSc Chemistry',
+      experience: '10 Years',
+      course: "O-Levels, IGCSE (3248, 0539)",
+      board: 'Cambridge',
+      // bio: 'Specialist in practical chemistry and lab work',
       variant: 'orange',
     },
-    {
-      name: 'Faisal Ahmed',
-      initials: 'FA',
-      qualification: 'MA Urdu',
-      experience: '9 Years',
-      specialization: 'Poetry & Prose',
-      bio: 'Making Urdu literature accessible and enjoyable',
-      variant: 'blue',
+     {
+      name: 'Bushra Nadeem',
+      image: '/images/faculty/urdu.jpg',
+      // qualification: 'MSc Chemistry',
+      experience: '2 Years',
+      course: "IGCSE, O-Levels (0539, 2438)",
+      board: 'Cambridge',
+      // bio: 'Specialist in practical chemistry and lab work',
+      variant: 'orange',
     },
   ],
   'Computer Science': [
     {
       name: 'Hamza Ali',
-      initials: 'HA',
+      image: '/images/faculty/hamza-ali.jpg',
       qualification: 'MSc Computer Science',
       experience: '8 Years',
-      specialization: 'Programming & Algorithms',
+      board: 'Programming & Algorithms',
       bio: 'Teaching coding and computational thinking',
       variant: 'orange',
     },
     {
       name: 'Ayesha Khan',
-      initials: 'AK',
+      image: '/images/faculty/ayesha-khan.jpg',
       qualification: 'BSc CS',
       experience: '6 Years',
-      specialization: 'Web Development & Databases',
+      board: 'Web Development & Databases',
       bio: 'Bridging theory and practical applications',
       variant: 'blue',
     },
@@ -272,14 +286,29 @@ export default function FacultyBySubject() {
                 }} />
 
                 {/* Avatar */}
-                <div className={styles.avatarWrapper}>
+                <div
+                  className={styles.avatarWrapper}
+                  style={{ '--img-position': teacher.imagePosition || 'top center' }}
+                >
                   <div className={styles.avatarRing} style={{
                     borderColor: isHovered ? accent : 'rgba(255,255,255,0.1)',
                   }} />
                   <div className={styles.avatar} style={{
                     background: `linear-gradient(135deg, ${accent}, ${accentDark})`,
+                    boxShadow: `0 10px 30px ${accent}66`,
                   }}>
-                    <span className={styles.initials}>{teacher.initials}</span>
+                    <Image
+                      src={teacher.image}
+                      alt={teacher.name}
+                      fill
+                      sizes="100px"
+                      className={styles.avatarImg}
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                    {/* Fallback initials shown via CSS when image fails */}
+                    <span className={styles.initials} aria-hidden="true">
+                      {teacher.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+                    </span>
                   </div>
                   <span className={styles.onlineDot} style={{
                     background: accent,
@@ -294,6 +323,9 @@ export default function FacultyBySubject() {
                 {/* Qualification */}
                 <p className={styles.qualification}>{teacher.qualification}</p>
 
+                {/* course */}
+                <p className={styles.course}>{teacher.course}</p>
+
                 {/* Divider */}
                 <div className={styles.cardDivider} style={{
                   opacity: isHovered ? 1 : 0.2,
@@ -306,8 +338,8 @@ export default function FacultyBySubject() {
                     <span className={styles.infoValue}>{teacher.experience}</span>
                   </div>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>Specialization</span>
-                    <span className={styles.infoValue}>{teacher.specialization}</span>
+                    <span className={styles.infoLabel}>board</span>
+                    <span className={styles.infoValue}>{teacher.board}</span>
                   </div>
                 </div>
 
@@ -315,7 +347,7 @@ export default function FacultyBySubject() {
                 <p className={styles.bio}>{teacher.bio}</p>
 
                 {/* Social icons */}
-                <div className={styles.socials}>
+                {/* <div className={styles.socials}>
                   <button className={styles.socialBtn} style={{
                     background: isHovered ? 'rgba(255, 165, 0, 0.15)' : 'rgba(255,255,255,0.05)',
                     borderColor: isHovered ? 'rgba(255, 165, 0, 0.4)' : 'rgba(255,255,255,0.1)',
@@ -332,7 +364,7 @@ export default function FacultyBySubject() {
                   }}>
                     <Mail className="w-4 h-4" />
                   </button>
-                </div>
+                </div> */}
 
                 {/* Watermark */}
                 {/* <span className={styles.watermark}>0{index + 1}</span> */}

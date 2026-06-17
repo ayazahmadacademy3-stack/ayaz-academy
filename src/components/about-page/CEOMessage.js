@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Quote, Sparkles, Award, Users, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
 import styles from './CEOMessage.module.css';
 
 /* Fixed particle positions */
@@ -107,10 +108,13 @@ export default function CEOMessage() {
                 <div className={styles.avatarRing1} />
                 <div className={styles.avatarRing2} />
                 <div className={styles.avatarCircle}>
-                  {/* Professional woman icon */}
-                  <svg className={styles.avatarIcon} fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                  </svg>
+                  <Image
+                    src="/acc-img/acc1.png"
+                    alt="Ayaz Ahmad - Founder & CEO"
+                    width={120}
+                    height={120}
+                    className={styles.avatarImage}
+                  />
                 </div>
 
                 {/* Floating quote badge */}
@@ -125,7 +129,7 @@ export default function CEOMessage() {
 
               {/* CEO Name on left side */}
               <div className={styles.ceoNameLeft}>
-                <h3>Saba Ayaz</h3>
+                <h3>Ayaz Ahmad</h3>
                 <p>Founder & CEO</p>
               </div>
             </div>
@@ -170,7 +174,7 @@ export default function CEOMessage() {
               {/* CEO info bottom */}
               <div className={styles.ceoInfo}>
                 <div className={styles.ceoDetails}>
-                  <h4>Saba Ayaz</h4>
+                  <h4>Ayaz Ahmad</h4>
                   <p>Founder & CEO</p>
                   <span>Ayaz Ahmad Academy</span>
                 </div>

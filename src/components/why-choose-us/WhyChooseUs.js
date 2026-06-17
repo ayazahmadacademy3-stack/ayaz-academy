@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const reasons = [
   {
@@ -175,8 +176,10 @@ export default function WhyChooseUs() {
         {/* Bottom CTA */}
         <div className="mt-12 md:mt-16 text-center px-4">
           <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-            <button className="btn-primary"><span>Schedule a Visit</span></button>
-            <button className="btn-outline"><span>Contact Us</span></button>
+            <button className="btn-primary">
+              <Link href={"/pages/enroll"}><span>Register Now</span></Link>
+              </button>
+            {/* <button className="btn-outline"><span>Contact Us</span></button> */}
           </div>
         </div>
       </div>

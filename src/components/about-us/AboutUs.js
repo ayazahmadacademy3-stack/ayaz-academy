@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './AboutUs.module.css';
+import Link from 'next/link';
 
 const features = [
   {
@@ -202,10 +203,10 @@ export default function AboutUs() {
             {/* Buttons */}
             <div className={styles.buttonGroup}>
               <button className="btn-primary">
-                <span>Learn More</span>
+                <Link href={"/pages/about"}><span>Learn More</span></Link>
               </button>
               <button className="btn-outline">
-                <span>Register Now</span>
+               <Link href={"/pages/enroll"}><span>Register Now</span></Link>
               </button>
             </div>
           </div>

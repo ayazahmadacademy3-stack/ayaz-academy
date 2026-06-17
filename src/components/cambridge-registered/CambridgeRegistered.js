@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 
 const highlights = [
   {
@@ -242,7 +243,7 @@ export default function CambridgeRegistered() {
             </ul>
 
             {/* CTA button */}
-            <button className="btn-primary"><span>Learn More About Cambridge</span></button>
+            <button className="btn-primary"><Link target='_blank' href={"https://www.cambridgeinternational.org/"}><span>Learn More About Cambridge</span></Link></button>
           </div>
 
         </div>

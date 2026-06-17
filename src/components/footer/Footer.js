@@ -434,11 +434,12 @@ export default function Footer() {
                   <div className="relative group">
                     <div className="absolute inset-0 bg-[#F5A623] blur-2xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
                     {/* Academy Logo Image */}
-                    <div className="relative w-24 h-24 rounded-3xl overflow-hidden transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-500 shadow-2xl border-2 border-white/10">
+                    <div className="relative w- rounded-3xl overflow-hidden transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-500 shadow-2xl border-2 border-white/10">
                       <img 
                         src="/academy-logo.png" 
                         alt="Ayaz Ahmad Academy" 
-                        className="w-full h-full object-contain bg-white p-3 footer-logo"
+                        width={230}
+                        className=" object-contain  p-3 footer-logo"
                       />
                       {/* Corner Accent */}
                       <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#F5A623] rounded-full animate-pulse shadow-lg shadow-[#F5A623]/50"></div>
@@ -603,7 +604,7 @@ export default function Footer() {
                       </div>
                       <div>
                         <p className="text-xs text-gray-400 mb-1">Email</p>
-                        <p className="text-sm text-white font-medium">info@ayazacademy.edu</p>
+                        <p className="text-sm text-white font-medium">ayazahmadacademy3@gmail.com</p>
                       </div>
                     </div>
                   </li>
@@ -617,7 +618,7 @@ export default function Footer() {
                       </div>
                       <div>
                         <p className="text-xs text-gray-400 mb-1">Location</p>
-                        <p className="text-sm text-white font-medium">Your City, Pakistan</p>
+                        <p className="text-sm text-white font-medium">Karachi, Pakistan</p>
                       </div>
                     </div>
                   </li>

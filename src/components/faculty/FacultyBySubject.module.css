@@ -300,6 +300,7 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
+  background-color: #ffffff;
 }
 
 /* Actual photo — covers the whole circle */
@@ -312,6 +313,7 @@
   object-position: var(--img-position, top center);
   border-radius: 50%;
   z-index: 2;
+  background-color: #ffffff;
 }
 
 /* Initials shown as fallback — behind the image by default */

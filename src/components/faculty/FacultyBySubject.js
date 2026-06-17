@@ -272,7 +272,7 @@ const facultyData = {
       image: '/isl-img/isl1.png',
       course: "Codes: (0493), GCSE(2058)",
       // experience: "18 years",
-      board: 'IGCSE / O level / A Level',
+      board: 'IGCSE, O-levels, A-Levels',
       variant: 'orange',
     },
   ],

@@ -36,11 +36,11 @@ export default function Navbar() {
               height={200}
               className="object-contain transform group-hover:scale-105 transition-transform duration-300 navbar-logo"
             />
-            <div className="flex flex-col logo-right-item">
-              <span className="text-2xl font-bold text-white ml-[-20px] tracking-wide">
+            <div className="flex flex-col logo-right-item ayaz-side ">
+              <span className="text-2xl font-bold text-white ml-[-20px] lg:ml-[-20px] tracking-wide leading-tight">
                 Ayaz Ahmad Academy
               </span>
-              <span className="text-base ml-[-20px] text-[#F5A623] font-medium">
+              <span className="text-base  ml-[-20px] lg:ml-[-20px] text-[#F5A623] font-medium">
                 Institute of O & A Level
               </span>
             </div>

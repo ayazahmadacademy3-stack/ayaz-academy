@@ -276,6 +276,24 @@ const facultyData = {
       variant: 'orange',
     },
   ],
+   'ACCA': [
+    {
+      name: 'Zeeshan Hassan',
+      image: '/acca-img/acca1.jpeg',
+      course: "Well I do have lectures of FR AA SBL SBR APM AAA",
+      // experience: "18 years",
+      board: 'IGCSE, O-levels, A-Levels',
+      variant: 'orange',
+    },
+     {
+      name: 'Ayaz Ahmad',
+      image: '/acc-img/acc1.png',
+      course: "IGCSE Accounting (0452), O level Accounting (7707), A level Accounting (9706)",
+      experience: "5+ years",
+      board: 'IGCSE / O level / A Level',
+      variant: 'orange',
+    },
+  ],
 
 };
 

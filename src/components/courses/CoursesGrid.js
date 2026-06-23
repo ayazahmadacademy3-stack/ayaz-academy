@@ -118,14 +118,23 @@ export default function CoursesGrid() {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
-          // after all cards finish entrance (~0.7s + 9*0.08s = ~1.5s), remove delay
           setTimeout(() => setAnimated(true), 1600);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+
+    // Fallback: show content after 500ms even if observer doesn't fire
+    const fallback = setTimeout(() => {
+      setIsVisible(true);
+      setTimeout(() => setAnimated(true), 1600);
+    }, 500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
   const filteredCourses = filter === 'all' 

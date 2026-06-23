@@ -427,4 +427,15 @@
   .features {
     grid-template-columns: 1fr;
   }
+
+  /* Ensure cards are visible on mobile even if observer doesn't fire */
+  .courseCard {
+    opacity: 0;
+    transform: translateY(40px) scale(0.93);
+  }
+
+  .courseCardVisible {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
 }

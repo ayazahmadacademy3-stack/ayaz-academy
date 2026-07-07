@@ -1,12 +1,16 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: process.env.EMAIL_HOST || 'smtpout.secureserver.net',
+  port: parseInt(process.env.EMAIL_PORT || '465'),
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
 });
+
+const FROM_ADDRESS = process.env.EMAIL_FROM || process.env.EMAIL_USER;
 
 /* ── Shared header/footer HTML ── */
 const emailHeader = (accentColor, accentDark, title, subtitle) => `
@@ -196,7 +200,7 @@ const buildUserHtml = (type, name) => {
         <div style="background:#f8fafc;border-radius:10px;padding:20px 24px;margin-bottom:8px;">
           <p style="margin:0 0 12px;font-size:14px;font-weight:700;color:#111827;">Need help? Contact us:</p>
           <p style="margin:0;font-size:14px;color:#6b7280;line-height:1.8;">
-            📧 <a href="mailto:${process.env.EMAIL_USER}" style="color:${accent};text-decoration:none;font-weight:600;">${process.env.EMAIL_USER}</a><br>
+            📧 <a href="mailto:${FROM_ADDRESS}" style="color:${accent};text-decoration:none;font-weight:600;">${FROM_ADDRESS}</a><br>
             🌐 Ayaz Ahmad Academy — Institute of O &amp; A Level
           </p>
         </div>
@@ -250,9 +254,9 @@ export async function POST(request) {
 
     /* ── Admin email ── */
     await transporter.sendMail({
-      from:        `"Ayaz Ahmad Academy" <${process.env.EMAIL_USER}>`,
-      to:          process.env.EMAIL_USER,
-      replyTo:     userEmail || process.env.EMAIL_USER,
+      from:        `"Ayaz Ahmad Academy" <${FROM_ADDRESS}>`,
+      to:          FROM_ADDRESS,
+      replyTo:     userEmail || FROM_ADDRESS,
       subject:     `New ${typeLabel} Registration - ${userName}`,
       html:        buildAdminHtml(type, fields, !!cvFile, cvFile?.name),
       attachments,
@@ -266,16 +270,16 @@ export async function POST(request) {
     /* ── User confirmation email ── */
     if (userEmail) {
       await transporter.sendMail({
-        from:    `"Ayaz Ahmad Academy" <${process.env.EMAIL_USER}>`,
+        from:    `"Ayaz Ahmad Academy" <${FROM_ADDRESS}>`,
         to:      userEmail,
-        replyTo: process.env.EMAIL_USER,
+        replyTo: FROM_ADDRESS,
         subject: `Registration Received - Ayaz Ahmad Academy`,
         html:    buildUserHtml(type, userName),
         headers: {
           'X-Priority':       '3',
           'X-Mailer':         'Ayaz Ahmad Academy Mailer',
           'X-Entity-Ref-ID':  `conf-${Date.now()}`,
-          'List-Unsubscribe': `<mailto:${process.env.EMAIL_USER}?subject=unsubscribe>`,
+          'List-Unsubscribe': `<mailto:${FROM_ADDRESS}?subject=unsubscribe>`,
         },
       });
     }

@@ -37,7 +37,7 @@ const facultyData = {
     }
   ],
   Chemistry: [
-     {
+    {
       name: 'Osama Shahab',
       image: '/chem-img/chem3.jpeg',
       // qualification: 'MSc Chemistry',
@@ -169,7 +169,7 @@ const facultyData = {
       name: 'Miss Shanila Farhan',
       image: '/eco-img/eco.jpeg',
       // qualification: 'MSc Chemistry',
-      // experience: '13 Years',
+      experience: '15 Years',
       course: "Economics",
       board: 'O-level, IGCSE, A-levels',
       // bio: 'Specialist in practical chemistry and lab work',
@@ -177,7 +177,7 @@ const facultyData = {
     },
   ],
   Urdu: [
-     {
+    {
       name: 'Ali Mehdi',
       image: '/urdu-img/urd1.jpeg',
       imagePosition: '75% -15%',
@@ -188,7 +188,7 @@ const facultyData = {
       // bio: 'Specialist in practical chemistry and lab work',
       variant: 'orange',
     },
-     {
+    {
       name: 'Bushra Nadeem',
       image: '/images/faculty/urdu.jpg',
       // qualification: 'MSc Chemistry',
@@ -201,7 +201,7 @@ const facultyData = {
   ],
 
   "Pak.Studies": [
-     {
+    {
       name: 'Mashal Ahmed',
       image: '/pak-img/pak1.jpeg',
       // imagePosition: '75% -15%',
@@ -212,7 +212,7 @@ const facultyData = {
       // bio: 'Specialist in practical chemistry and lab work',
       variant: 'orange',
     },
-     {
+    {
       name: 'Waqas Ashraf ',
       image: '/pak-img/pak2.png',
       // qualification: 'MSc Chemistry',
@@ -233,7 +233,7 @@ const facultyData = {
       variant: 'orange',
     },
   ],
-   'Business': [
+  'Business': [
     {
       name: 'Atique Maniya',
       image: '/business-img/busi1.jpeg',
@@ -249,13 +249,14 @@ const facultyData = {
       name: 'Sir Afham Saya',
       image: '/comp-img/comp1.jpeg',
       course: "IGCSE(2210), O-levels(0478), A-Levels(9618)",
-      // experience: "18 years",
+      experience: "10 years",
       board: 'IGCSE / O level / A Level',
+      bio: 'Taught more than 1500 students with almost 1000 A & A*',
       variant: 'orange',
     },
   ],
 
-    'Biology': [
+  'Biology': [
     {
       name: 'Abdul Qadir ',
       image: '/bio-img/bio1.jpeg',
@@ -266,17 +267,17 @@ const facultyData = {
     },
   ],
 
-      'Islamiat': [
+  'Islamiat': [
     {
       name: 'Sir Bilal Sujela',
       image: '/isl-img/isl1.png',
       course: "Codes: (0493), GCSE(2058)",
-      // experience: "18 years",
+      experience: "5+ years",
       board: 'IGCSE, O-levels, A-Levels',
       variant: 'orange',
     },
   ],
-   'ACCA': [
+  'ACCA': [
     {
       name: 'Zeeshan Hassan',
       image: '/acca-img/acca1.jpeg',
@@ -285,7 +286,7 @@ const facultyData = {
       board: 'IGCSE, O-levels, A-Levels',
       variant: 'orange',
     },
-     {
+    {
       name: 'Ayaz Ahmad',
       image: '/acc-img/acc1.png',
       course: "IGCSE Accounting (0452), O level Accounting (7707), A level Accounting (9706)",
@@ -298,8 +299,8 @@ const facultyData = {
 };
 
 const particles = [
-  { left: 6,  top: 10, size: 5, color: '#F5A623', dur: '3.2s', delay: '0s'   },
-  { left: 92, top: 8,  size: 4, color: '#4a7cf7', dur: '4.0s', delay: '0.7s' },
+  { left: 6, top: 10, size: 5, color: '#F5A623', dur: '3.2s', delay: '0s' },
+  { left: 92, top: 8, size: 4, color: '#4a7cf7', dur: '4.0s', delay: '0.7s' },
   { left: 20, top: 82, size: 6, color: '#F5A623', dur: '3.7s', delay: '1.4s' },
   { left: 87, top: 78, size: 4, color: '#4a7cf7', dur: '5.0s', delay: '0.3s' },
 ];
@@ -329,7 +330,7 @@ export default function FacultyBySubject() {
       <div className={styles.orb1} />
       <div className={styles.orb2} />
       <div className={styles.dotGrid} />
-      
+
       <div className={styles.particlesWrapper}>
         {particles.map((p, i) => (
           <span key={i} className={styles.particle} style={{

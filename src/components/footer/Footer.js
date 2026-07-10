@@ -491,6 +491,7 @@ export default function Footer() {
                   <div className="flex flex-wrap gap-3">
                     {socialLinks.map((social, index) => (
                       <a
+                      target='_blank'
                         key={index}
                         href={social.url}
                         onMouseEnter={() => setHoveredLink(index)}

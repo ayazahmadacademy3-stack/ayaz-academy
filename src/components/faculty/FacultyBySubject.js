@@ -292,7 +292,7 @@ const facultyData = {
       course: "ACCA FACULTY ",
       experience: "4+ years",
       board: 'ACCA\nSubjects: BT, MA, FA, PM',
-      variant: 'orange',
+      variant: 'blue',
     },
   ],
 

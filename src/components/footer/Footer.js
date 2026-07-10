@@ -35,7 +35,7 @@ export default function Footer() {
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validate email
     if (!email || !email.trim()) {
       Swal.fire({
@@ -257,7 +257,7 @@ export default function Footer() {
             document.head.appendChild(style);
           },
         });
-        
+
         // Clear the email input
         setEmail('');
       } else {
@@ -314,51 +314,51 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { 
+    {
       name: 'Facebook',
       icon: (
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
         </svg>
       ),
-      url: '#',
+      url: 'https://www.facebook.com/AyazAhmadAcadmy?rdid=G53TvFPj5CwXb4YO&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1QD2j4MRmQ%2F#',
     },
-    { 
-      name: 'Instagram',
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-      ),
-      url: '#',
-    },
-    { 
-      name: 'Twitter',
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-        </svg>
-      ),
-      url: '#',
-    },
-    { 
-      name: 'YouTube',
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-        </svg>
-      ),
-      url: '#',
-    },
-    { 
-      name: 'LinkedIn',
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      ),
-      url: '#',
-    },
+    // {
+    //   name: 'Instagram',
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    //       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+    //     </svg>
+    //   ),
+    //   url: '#',
+    // },
+    // {
+    //   name: 'Twitter',
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    //       <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+    //     </svg>
+    //   ),
+    //   url: '#',
+    // },
+    // {
+    //   name: 'YouTube',
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    //       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    //     </svg>
+    //   ),
+    //   url: '#',
+    // },
+    // {
+    //   name: 'LinkedIn',
+    //   icon: (
+    //     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    //       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    //     </svg>
+    //   ),
+    //   url: '#',
+    // },
   ];
 
   const stats = [
@@ -386,10 +386,10 @@ export default function Footer() {
             }}
           />
         ))}
-        
+
         {/* Gradient Mesh */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#F5A623]/5 via-transparent to-[#2B4C9F]/5"></div>
-        
+
         {/* Animated Lines */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-[#F5A623]/20 to-transparent animate-pulse"></div>
@@ -435,9 +435,9 @@ export default function Footer() {
                     <div className="absolute inset-0 bg-[#F5A623] blur-2xl opacity-40 group-hover:opacity-60 transition-opacity"></div>
                     {/* Academy Logo Image */}
                     <div className="relative w- rounded-3xl overflow-hidden transform group-hover:scale-105 group-hover:rotate-2 transition-all duration-500 shadow-2xl border-2 border-white/10">
-                      <img 
-                        src="/academy-logo.png" 
-                        alt="Ayaz Ahmad Academy" 
+                      <img
+                        src="/academy-logo.png"
+                        alt="Ayaz Ahmad Academy"
                         width={230}
                         className=" object-contain  p-3 footer-logo"
                       />
@@ -472,7 +472,7 @@ export default function Footer() {
                       disabled={isSubmitting}
                       className="w-full px-6 py-4 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-[#F5A623] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     />
-                    <button 
+                    <button
                       type="submit"
                       disabled={isSubmitting}
                       className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-gradient-to-r from-[#F5A623] to-[#ff8c00] rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-[#F5A623]/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
@@ -497,15 +497,13 @@ export default function Footer() {
                         onMouseLeave={() => setHoveredLink(null)}
                         className="group relative"
                       >
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center text-white transform transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#F5A623] hover:shadow-lg hover:shadow-[#F5A623]/50 ${
-                          hoveredLink === index ? 'bg-gradient-to-br from-[#F5A623] to-[#ff8c00]' : ''
-                        }`}>
+                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center text-white transform transition-all duration-300 hover:scale-110 hover:-translate-y-1 hover:border-[#F5A623] hover:shadow-lg hover:shadow-[#F5A623]/50 ${hoveredLink === index ? 'bg-gradient-to-br from-[#F5A623] to-[#ff8c00]' : ''
+                          }`}>
                           {social.icon}
                         </div>
                         {/* Tooltip */}
-                        <div className={`absolute -top-10 left-1/2 -translate-x-1/2 bg-[#F5A623] text-white px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-300 ${
-                          hoveredLink === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
-                        }`}>
+                        <div className={`absolute -top-10 left-1/2 -translate-x-1/2 bg-[#F5A623] text-white px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all duration-300 ${hoveredLink === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+                          }`}>
                           {social.name}
                           <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#F5A623] rotate-45"></div>
                         </div>
@@ -520,176 +518,187 @@ export default function Footer() {
             <div className="lg:col-span-7 flex flex-col gap-8">
               {/* Top 3 columns */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-              {/* Quick Links */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
-                  Quick Links
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    { name: 'Home', href: '/' },
-                    { name: 'About Us', href: '/pages/about' },
-                    { name: 'Contact Us', href: '/pages/contact' },
-                    { name: 'Courses', href: '/pages/courses' },
-                    { name: 'Faculty', href: '/pages/faculty' }
-                  ].map((link, index) => (
-                    <li key={index}>
-                      <Link
-                        href={link.href}
-                        className="group flex items-center text-gray-300 hover:text-[#F5A623] transition-all duration-300"
-                      >
-                        <span className="w-0 group-hover:w-6 h-px bg-[#F5A623] transition-all duration-300 mr-0 group-hover:mr-3"></span>
-                        <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{link.name}</span>
-                      </Link>
+                {/* Quick Links */}
+                <div>
+                  <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
+                    Quick Links
+                    <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
+                  </h4>
+                  <ul className="space-y-3">
+                    {[
+                      { name: 'Home', href: '/' },
+                      { name: 'About Us', href: '/pages/about' },
+                      { name: 'Contact Us', href: '/pages/contact' },
+                      { name: 'Courses', href: '/pages/courses' },
+                      { name: 'Faculty', href: '/pages/faculty' }
+                    ].map((link, index) => (
+                      <li key={index}>
+                        <Link
+                          href={link.href}
+                          className="group flex items-center text-gray-300 hover:text-[#F5A623] transition-all duration-300"
+                        >
+                          <span className="w-0 group-hover:w-6 h-px bg-[#F5A623] transition-all duration-300 mr-0 group-hover:mr-3"></span>
+                          <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{link.name}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Courses */}
+                <div>
+                  <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
+                    Our Courses
+                    <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
+                  </h4>
+                  <ul className="space-y-3">
+                    {[
+                      { name: 'O Level', href: '/pages/courses' },
+                      { name: 'A Level', href: '/pages/courses' },
+                      { name: 'Mathematics', href: '/pages/courses' },
+                      { name: 'Sciences', href: '/pages/courses' },
+                      { name: 'Business', href: '/pages/courses' },
+                      { name: 'Computer', href: '/pages/courses' }
+                    ].map((course, index) => (
+                      <li key={index}>
+                        <Link
+                          href={course.href}
+                          className="group flex items-center text-gray-300 hover:text-[#F5A623] transition-all duration-300"
+                        >
+                          <span className="w-0 group-hover:w-6 h-px bg-[#F5A623] transition-all duration-300 mr-0 group-hover:mr-3"></span>
+                          <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{course.name}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Contact */}
+                <div>
+                  <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
+                    Contact Us
+                    <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
+                  </h4>
+                  <ul className="space-y-4">
+                    <li className="group">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#F5A623]/20 to-[#F5A623]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                          <svg className="w-5 h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-400 mb-1">Phone</p>
+                           <a
+                            href="https://wa.me/923452260042"
+                            target='_blank'
+                            className="text-sm font-medium text-white hover:underline"
+                          >
+                            +92 345 2260042
+                          </a> 
+                        </div>
+                      </div>
                     </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Courses */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
-                  Our Courses
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
-                </h4>
-                <ul className="space-y-3">
-                  {[
-                    { name: 'O Level', href: '/pages/courses' },
-                    { name: 'A Level', href: '/pages/courses' },
-                    { name: 'Mathematics', href: '/pages/courses' },
-                    { name: 'Sciences', href: '/pages/courses' },
-                    { name: 'Business', href: '/pages/courses' },
-                    { name: 'Computer', href: '/pages/courses' }
-                  ].map((course, index) => (
-                    <li key={index}>
-                      <Link
-                        href={course.href}
-                        className="group flex items-center text-gray-300 hover:text-[#F5A623] transition-all duration-300"
-                      >
-                        <span className="w-0 group-hover:w-6 h-px bg-[#F5A623] transition-all duration-300 mr-0 group-hover:mr-3"></span>
-                        <span className="text-sm font-medium group-hover:translate-x-1 transition-transform duration-300">{course.name}</span>
-                      </Link>
+                    <li className="group">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#F5A623]/20 to-[#F5A623]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                          <svg className="w-5 h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-400 mb-1">Email</p>
+                          <a
+                            href="mailto:info@ayazahmadacademy.com"
+                            className="text-sm font-medium text-white hover:underline"
+                          >
+                            info@ayazahmadacademy.com
+                          </a>
+                        </div>
+                      </div>
                     </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Contact */}
-              <div>
-                <h4 className="text-xl font-bold text-white mb-6 relative inline-block">
-                  Contact Us
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#F5A623] to-transparent rounded-full"></span>
-                </h4>
-                <ul className="space-y-4">
-                  <li className="group">
-                    <div className="flex items-start space-x-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#F5A623]/20 to-[#F5A623]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <svg className="w-5 h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
+                    <li className="group">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#F5A623]/20 to-[#F5A623]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                          <svg className="w-5 h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-xs text-gray-400 mb-1">Location</p>
+                          <p className="text-sm text-white font-medium">Karachi, Pakistan</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-xs text-gray-400 mb-1">Phone</p>
-                        <p className="text-sm text-white font-medium">+92 XXX XXXXXXX</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="group">
-                    <div className="flex items-start space-x-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#F5A623]/20 to-[#F5A623]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <svg className="w-5 h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-400 mb-1">Email</p>
-                        <p className="text-sm text-white font-medium">ayazahmadacademy3@gmail.com</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li className="group">
-                    <div className="flex items-start space-x-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#F5A623]/20 to-[#F5A623]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <svg className="w-5 h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-xs text-gray-400 mb-1">Location</p>
-                        <p className="text-sm text-white font-medium">Karachi, Pakistan</p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Map — fills remaining space below the 3 columns */}
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
-              {/* Header Bar */}
-              <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#0a0e27]/90 via-[#1a1f3a]/90 to-[#0a0e27]/90 border-b border-white/10">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
-                  <span className="ml-2 text-gray-400 text-xs font-mono">maps.ayazacademy.edu</span>
-                </div>
-                <div className="flex items-center space-x-1 text-[#F5A623]">
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span className="text-xs font-semibold">Karachi, Pakistan</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              {/* Map Iframe */}
-              <div className="relative h-52">
-                <div className="absolute inset-0 z-10 pointer-events-none">
-                  <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-[#0a0e27]/40 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-[#0a0e27]/40 to-transparent"></div>
-                  <div className="absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-[#0a0e27]/40 to-transparent"></div>
-                  <div className="absolute top-0 bottom-0 right-0 w-6 bg-gradient-to-l from-[#0a0e27]/40 to-transparent"></div>
-                </div>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231960.27722053638!2d66.99006!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e06651d4bbf%3A0x9cf92f44555a0c23!2sKarachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1715000000000!5m2!1sen!2s"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) saturate(0.8) brightness(0.85)' }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0"
-                ></iframe>
-              </div>
-
-              {/* Bottom Info Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 bg-gradient-to-r from-[#0a0e27]/90 via-[#1a1f3a]/90 to-[#0a0e27]/90 border-t border-white/10">
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center space-x-1.5">
-                    <div className="w-1.5 h-1.5 bg-[#F5A623] rounded-full animate-pulse"></div>
-                    <span className="text-gray-300 text-xs">Karachi, Sindh</span>
+              {/* Map — fills remaining space below the 3 columns */}
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
+                {/* Header Bar */}
+                <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#0a0e27]/90 via-[#1a1f3a]/90 to-[#0a0e27]/90 border-b border-white/10">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                    <span className="ml-2 text-gray-400 text-xs font-mono">maps.ayazacademy.edu</span>
                   </div>
-                  <div className="flex items-center space-x-1.5">
-                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-                    <span className="text-gray-300 text-xs">24°51′N 67°00′E</span>
+                  <div className="flex items-center space-x-1 text-[#F5A623]">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-xs font-semibold">Karachi, Pakistan</span>
                   </div>
                 </div>
-                <a
-                  href="https://maps.google.com/?q=Karachi,Pakistan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-[#F5A623] to-[#ff8c00] rounded-lg text-white text-xs font-semibold hover:shadow-lg hover:shadow-[#F5A623]/40 hover:scale-105 transition-all duration-300"
-                >
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                  <span>Open in Maps</span>
-                </a>
+
+                {/* Map Iframe */}
+                <div className="relative h-52">
+                  <div className="absolute inset-0 z-10 pointer-events-none">
+                    <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-[#0a0e27]/40 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-[#0a0e27]/40 to-transparent"></div>
+                    <div className="absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-[#0a0e27]/40 to-transparent"></div>
+                    <div className="absolute top-0 bottom-0 right-0 w-6 bg-gradient-to-l from-[#0a0e27]/40 to-transparent"></div>
+                  </div>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231960.27722053638!2d66.99006!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e06651d4bbf%3A0x9cf92f44555a0c23!2sKarachi%2C%20Karachi%20City%2C%20Sindh%2C%20Pakistan!5e0!3m2!1sen!2s!4v1715000000000!5m2!1sen!2s"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) saturate(0.8) brightness(0.85)' }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0"
+                  ></iframe>
+                </div>
+
+                {/* Bottom Info Bar */}
+                <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 bg-gradient-to-r from-[#0a0e27]/90 via-[#1a1f3a]/90 to-[#0a0e27]/90 border-t border-white/10">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-1.5">
+                      <div className="w-1.5 h-1.5 bg-[#F5A623] rounded-full animate-pulse"></div>
+                      <span className="text-gray-300 text-xs">Karachi, Sindh</span>
+                    </div>
+                    <div className="flex items-center space-x-1.5">
+                      <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                      <span className="text-gray-300 text-xs">24°51′N 67°00′E</span>
+                    </div>
+                  </div>
+                  <a
+                    href="https://maps.google.com/?q=Karachi,Pakistan"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-1.5 px-3 py-1.5 bg-gradient-to-r from-[#F5A623] to-[#ff8c00] rounded-lg text-white text-xs font-semibold hover:shadow-lg hover:shadow-[#F5A623]/40 hover:scale-105 transition-all duration-300"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    <span>Open in Maps</span>
+                  </a>
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
@@ -720,9 +729,8 @@ export default function Footer() {
       {/* Scroll to Top Button */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-[#F5A623] to-[#ff8c00] rounded-2xl flex items-center justify-center shadow-2xl shadow-[#F5A623]/50 hover:shadow-[#F5A623]/70 transition-all duration-300 hover:scale-110 hover:-translate-y-1 group z-50 ${
-          showScrollBtn ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
+        className={`fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-br from-[#F5A623] to-[#ff8c00] rounded-2xl flex items-center justify-center shadow-2xl shadow-[#F5A623]/50 hover:shadow-[#F5A623]/70 transition-all duration-300 hover:scale-110 hover:-translate-y-1 group z-50 ${showScrollBtn ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
+          }`}
       >
         <svg className="w-6 h-6 text-white group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 10l7-7m0 0l7 7m-7-7v18" />

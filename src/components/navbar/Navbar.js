@@ -90,10 +90,10 @@ export default function Navbar() {
             <MobileNavLink href="/pages/faculty">Faculty</MobileNavLink>
             {/* <MobileNavLink href="/pages/contact">Enroll Now</MobileNavLink> */}
             <Link 
-              href="/enroll" 
+              href="/pages/enroll" 
               className="relative group overflow-hidden bg-[#F5A623] text-white px-6 py-2.5 rounded-full font-semibold transition-all text-center mt-2 hover:shadow-lg hover:shadow-[#F5A623]/30"
             >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#2B4C9F]">Enroll Now</span>
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#2B4C9F]">Register Now</span>
               
               {/* Liquid Fill Effect */}
               <div className="absolute bottom-0 left-0 right-0 h-0 bg-white group-hover:h-full transition-all duration-500 ease-out rounded-full"></div>

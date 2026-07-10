@@ -281,17 +281,17 @@ const facultyData = {
     {
       name: 'Zeeshan Hassan',
       image: '/acca-img/acca1.jpeg',
-      course: "Well I do have lectures of FR AA SBL SBR APM AAA",
-      // experience: "18 years",
-      board: 'IGCSE, O-levels, A-Levels',
+      course: "ACCA FACULTY ",
+      experience: "10+ years",
+      board: 'ACCA\nSubjects: FR, AA, SBL, SBR, APM, AAA',
       variant: 'orange',
     },
     {
       name: 'Ayaz Ahmad',
       image: '/acc-img/acc1.png',
-      course: "IGCSE Accounting (0452), O level Accounting (7707), A level Accounting (9706)",
-      experience: "5+ years",
-      board: 'IGCSE / O level / A Level',
+      course: "ACCA FACULTY ",
+      experience: "4+ years",
+      board: 'ACCA\nSubjects: BT, MA, FA, PM',
       variant: 'orange',
     },
   ],
@@ -467,7 +467,7 @@ export default function FacultyBySubject() {
                   </div>
                   <div className={styles.infoItem}>
                     <span className={styles.infoLabel}>board</span>
-                    <span className={styles.infoValue}>{teacher.board}</span>
+                    <span style={{ whiteSpace: 'pre-line', marginTop: '0.5rem' }} className={styles.infoValue}>{teacher.board}</span>
                   </div>
                 </div>
 

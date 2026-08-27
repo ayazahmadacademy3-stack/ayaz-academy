@@ -85,23 +85,32 @@ export default function ContactForm() {
     setErrMsg('');
 
     try {
+      console.log('📤 Submitting contact form...');
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
+      
+      console.log('📥 Response status:', res.status);
       const data = await res.json();
+      console.log('📥 Response data:', data);
 
       if (data.success) {
+        console.log('✅ Form submitted successfully');
         setStatus('success');
         setForm({ name: '', email: '', phone: '', message: '' });
       } else {
+        console.error('❌ Form submission failed:', data);
         setStatus('error');
-        setErrMsg(data.error || 'Something went wrong. Please try again.');
+        // Show debug info in development
+        const debugInfo = data.debug ? `\n\nDebug: ${data.debug}` : '';
+        setErrMsg(data.error + debugInfo || 'Something went wrong. Please try again.');
       }
-    } catch {
+    } catch (err) {
+      console.error('❌ Network error:', err);
       setStatus('error');
-      setErrMsg('Network error. Please check your connection and try again.');
+      setErrMsg(`Network error: ${err.message}. Please check your connection and try again.`);
     }
   };
 

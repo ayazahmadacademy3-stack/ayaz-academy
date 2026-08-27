@@ -142,13 +142,33 @@ const buildUserHtml = (name) => `
 
 export async function POST(request) {
   try {
+    // Log environment variables (without exposing password)
+    console.log('📧 Email Config Check:');
+    console.log('EMAIL_HOST:', process.env.EMAIL_HOST || 'MISSING');
+    console.log('EMAIL_PORT:', process.env.EMAIL_PORT || 'MISSING');
+    console.log('EMAIL_USER:', process.env.EMAIL_USER || 'MISSING');
+    console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? 'SET (length: ' + process.env.EMAIL_PASS.length + ')' : 'MISSING');
+    console.log('EMAIL_FROM:', process.env.EMAIL_FROM || 'MISSING');
+
     const { name, email, phone, message } = await request.json();
 
     if (!name || !email || !message) {
+      console.error('❌ Validation Error: Missing required fields');
       return Response.json({ success: false, error: 'Name, email, and message are required.' }, { status: 400 });
     }
     if (!email.includes('@')) {
+      console.error('❌ Validation Error: Invalid email format');
       return Response.json({ success: false, error: 'Invalid email address.' }, { status: 400 });
+    }
+
+    // Check if email credentials are available
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('❌ Configuration Error: Email credentials missing');
+      return Response.json({ 
+        success: false, 
+        error: 'Email service not configured. Please contact administrator.',
+        debug: 'EMAIL_USER or EMAIL_PASS environment variables are missing'
+      }, { status: 500 });
     }
 
     const sentAt = new Date().toLocaleString('en-PK', {
@@ -162,13 +182,14 @@ export async function POST(request) {
       await transporter.verify();
       console.log('✅ SMTP connection verified');
     } catch (verifyError) {
-      // Silently ignore - emails will still send
-      console.log('ℹ️  SMTP verification skipped (emails will still send)');
+      console.warn('⚠️  SMTP verification failed:', verifyError.message);
+      console.warn('ℹ️  Attempting to send anyway (GoDaddy often fails verification but sends successfully)');
     }
 
     const emailPromises = [];
 
     /* ── Admin notification to info@ ── */
+    console.log('📤 Attempting to send admin notification to:', FROM_ADDRESS);
     const adminEmail = transporter.sendMail({
       from:    `"Ayaz Ahmad Academy" <${FROM_ADDRESS}>`,
       to:      FROM_ADDRESS,
@@ -180,16 +201,19 @@ export async function POST(request) {
         'X-Mailer':   'Ayaz Ahmad Academy Mailer',
       },
     }).then(() => {
-      console.log('✅ Admin notification sent');
+      console.log('✅ Admin notification sent successfully');
       return { success: true, type: 'admin' };
     }).catch(err => {
       console.error('❌ Admin email error:', err.message);
-      return { success: false, type: 'admin', error: err.message };
+      console.error('❌ Error code:', err.code);
+      console.error('❌ Full error:', JSON.stringify(err, null, 2));
+      return { success: false, type: 'admin', error: err.message, code: err.code };
     });
 
     emailPromises.push(adminEmail);
 
     /* ── User confirmation to sender ── */
+    console.log('📤 Attempting to send user confirmation to:', email);
     const userEmail = transporter.sendMail({
       from:    `"Ayaz Ahmad Academy" <${FROM_ADDRESS}>`,
       to:      email,
@@ -201,11 +225,13 @@ export async function POST(request) {
         'X-Mailer':   'Ayaz Ahmad Academy Mailer',
       },
     }).then(() => {
-      console.log('✅ User confirmation sent');
+      console.log('✅ User confirmation sent successfully');
       return { success: true, type: 'user' };
     }).catch(err => {
       console.error('❌ User email error:', err.message);
-      return { success: false, type: 'user', error: err.message };
+      console.error('❌ Error code:', err.code);
+      console.error('❌ Full error:', JSON.stringify(err, null, 2));
+      return { success: false, type: 'user', error: err.message, code: err.code };
     });
 
     emailPromises.push(userEmail);
@@ -226,16 +252,32 @@ export async function POST(request) {
       return Response.json({ success: true });
     } else if (adminSuccess || userSuccess) {
       console.log('⚠️  Partial success - at least one email sent');
-      return Response.json({ success: true });
+      const failedEmail = !adminSuccess ? adminResult : userResult;
+      console.warn('Failed email details:', failedEmail);
+      return Response.json({ 
+        success: true,
+        warning: 'One email failed but at least one was sent',
+        debug: failedEmail
+      });
     } else {
-      throw new Error('Both emails failed to send');
+      const errorDetails = {
+        adminError: adminResult?.error || 'Unknown error',
+        adminCode: adminResult?.code,
+        userError: userResult?.error || 'Unknown error',
+        userCode: userResult?.code,
+      };
+      console.error('❌ Both emails failed:', errorDetails);
+      throw new Error(`Both emails failed - Admin: ${errorDetails.adminError}, User: ${errorDetails.userError}`);
     }
 
   } catch (error) {
     console.error('❌ Contact form error:', error);
+    console.error('❌ Error stack:', error.stack);
     return Response.json({ 
       success: false, 
-      error: 'Failed to send email. Please try again or contact us directly.' 
+      error: 'Failed to send email. Please try again or contact us directly.',
+      debug: error.message,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     }, { status: 500 });
   }
 }

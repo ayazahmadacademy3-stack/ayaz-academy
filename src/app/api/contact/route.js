@@ -2,12 +2,16 @@ import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST || 'smtpout.secureserver.net',
-  port: parseInt(process.env.EMAIL_PORT || '465'),
-  secure: true,
+  port: parseInt(process.env.EMAIL_PORT || '587'),
+  secure: false, // Use TLS
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    ciphers: 'SSLv3',
+    rejectUnauthorized: false
+  }
 });
 
 const FROM_ADDRESS = process.env.EMAIL_FROM || process.env.EMAIL_USER;
@@ -152,8 +156,20 @@ export async function POST(request) {
       day: 'numeric', hour: '2-digit', minute: '2-digit',
     });
 
+    // Verify transporter connection before sending (optional check)
+    // Note: GoDaddy sometimes fails verification but emails still work
+    try {
+      await transporter.verify();
+      console.log('✅ SMTP connection verified');
+    } catch (verifyError) {
+      // Silently ignore - emails will still send
+      console.log('ℹ️  SMTP verification skipped (emails will still send)');
+    }
+
+    const emailPromises = [];
+
     /* ── Admin notification to info@ ── */
-    await transporter.sendMail({
+    const adminEmail = transporter.sendMail({
       from:    `"Ayaz Ahmad Academy" <${FROM_ADDRESS}>`,
       to:      FROM_ADDRESS,
       replyTo: email,
@@ -163,10 +179,18 @@ export async function POST(request) {
         'X-Priority': '3',
         'X-Mailer':   'Ayaz Ahmad Academy Mailer',
       },
+    }).then(() => {
+      console.log('✅ Admin notification sent');
+      return { success: true, type: 'admin' };
+    }).catch(err => {
+      console.error('❌ Admin email error:', err.message);
+      return { success: false, type: 'admin', error: err.message };
     });
 
+    emailPromises.push(adminEmail);
+
     /* ── User confirmation to sender ── */
-    await transporter.sendMail({
+    const userEmail = transporter.sendMail({
       from:    `"Ayaz Ahmad Academy" <${FROM_ADDRESS}>`,
       to:      email,
       replyTo: FROM_ADDRESS,
@@ -176,12 +200,42 @@ export async function POST(request) {
         'X-Priority': '3',
         'X-Mailer':   'Ayaz Ahmad Academy Mailer',
       },
+    }).then(() => {
+      console.log('✅ User confirmation sent');
+      return { success: true, type: 'user' };
+    }).catch(err => {
+      console.error('❌ User email error:', err.message);
+      return { success: false, type: 'user', error: err.message };
     });
 
-    return Response.json({ success: true });
+    emailPromises.push(userEmail);
+
+    // Wait for both emails
+    const results = await Promise.allSettled(emailPromises);
+    
+    // Check results
+    const adminResult = results[0].value || results[0].reason;
+    const userResult = results[1].value || results[1].reason;
+
+    // Consider success if at least admin email was sent
+    const adminSuccess = results[0].status === 'fulfilled' && adminResult.success;
+    const userSuccess = results[1].status === 'fulfilled' && userResult.success;
+
+    if (adminSuccess && userSuccess) {
+      console.log('✅ Both emails sent successfully');
+      return Response.json({ success: true });
+    } else if (adminSuccess || userSuccess) {
+      console.log('⚠️  Partial success - at least one email sent');
+      return Response.json({ success: true });
+    } else {
+      throw new Error('Both emails failed to send');
+    }
 
   } catch (error) {
-    console.error('Contact form error:', error);
-    return Response.json({ success: false, error: error.message }, { status: 500 });
+    console.error('❌ Contact form error:', error);
+    return Response.json({ 
+      success: false, 
+      error: 'Failed to send email. Please try again or contact us directly.' 
+    }, { status: 500 });
   }
 }

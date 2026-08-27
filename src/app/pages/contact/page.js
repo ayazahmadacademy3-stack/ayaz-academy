@@ -1,221 +1,367 @@
-'use client';
-
-import { useState } from 'react';
 import Navbar from '@/components/navbar/Navbar';
 import Footer from '@/components/footer/Footer';
+import ContactHero from '@/components/contact-page/ContactHero';
+import ContactForm from '@/components/contact-page/ContactForm';
+
+// Advanced SEO Metadata for Contact Page
+export const metadata = {
+  title: 'Contact Us - Get in Touch | Ayaz Ahmad Academy | Cambridge O & A Level Education',
+  description: 'Contact Ayaz Ahmad Academy for admissions, inquiries, or support. Email: info@ayazahmadacademy.com | Phone: +92-XXX-XXXXXXX. Visit us for O & A Level Cambridge education. Quick response guaranteed. Office hours: Mon-Sat 9AM-6PM.',
+  keywords: [
+    'contact Ayaz Ahmad Academy',
+    'academy contact number',
+    'email academy',
+    'visit academy',
+    'contact us',
+    'get in touch',
+    'academy address',
+    'office location',
+    'phone number',
+    'email address',
+    'contact form',
+    'inquiry form',
+    'admission inquiry',
+    'academy location Pakistan',
+    'how to reach',
+    'contact information',
+    'reach us',
+    'academy office',
+    'customer support',
+    'help desk',
+  ],
+  
+  // Open Graph for Social Media
+  openGraph: {
+    title: 'Contact Ayaz Ahmad Academy - Get in Touch for Admissions & Inquiries',
+    description: 'Contact us for O & A Level admissions, inquiries, or support. Email, phone, or visit us. Quick response within 24 hours. Office hours: Mon-Sat 9AM-6PM.',
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://ayazahmadacademy.com'}/pages/contact`,
+    siteName: 'Ayaz Ahmad Academy',
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://ayazahmadacademy.com'}/academy-logo.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Ayaz Ahmad Academy - Contact Us',
+      },
+    ],
+    locale: 'en_PK',
+    type: 'website',
+  },
+  
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Ayaz Ahmad Academy - Get in Touch',
+    description: 'Contact us for admissions, inquiries, or support. Quick response guaranteed. Email, phone, or visit us.',
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'https://ayazahmadacademy.com'}/academy-logo.png`],
+  },
+  
+  // Canonical URL
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://ayazahmadacademy.com'}/pages/contact`,
+  },
+  
+  // Additional Meta Tags
+  authors: [{ name: 'Ayaz Ahmad Academy' }],
+  category: 'Education',
+  
+  // Robots
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+// JSON-LD Structured Data for Contact Page
+function generateContactStructuredData() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://ayazahmadacademy.com';
+  
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      // ContactPage Schema
+      {
+        '@type': 'ContactPage',
+        '@id': `${baseUrl}/pages/contact#contactpage`,
+        url: `${baseUrl}/pages/contact`,
+        name: 'Contact Ayaz Ahmad Academy',
+        description: 'Get in touch with Ayaz Ahmad Academy for admissions, inquiries, or support',
+        inLanguage: 'en-PK',
+        isPartOf: {
+          '@id': `${baseUrl}/#website`,
+        },
+        breadcrumb: {
+          '@id': `${baseUrl}/pages/contact#breadcrumb`,
+        },
+      },
+      
+      // Breadcrumb Schema
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${baseUrl}/pages/contact#breadcrumb`,
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: baseUrl,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Contact Us',
+            item: `${baseUrl}/pages/contact`,
+          },
+        ],
+      },
+      
+      // Organization with Contact Details
+      {
+        '@type': 'EducationalOrganization',
+        '@id': `${baseUrl}/#organization`,
+        name: 'Ayaz Ahmad Academy',
+        alternateName: 'Ayaz Academy',
+        url: baseUrl,
+        logo: `${baseUrl}/academy-logo.png`,
+        image: `${baseUrl}/academy-logo.png`,
+        description: 'Leading O & A Level Cambridge educational institute in Pakistan',
+        
+        // Contact Information
+        email: 'info@ayazahmadacademy.com',
+        telephone: '+92 345 2260042',
+        faxNumber: '+92 336 3659231', // Optional
+        
+        // Address
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Karachi',
+          addressLocality: 'Karachi',
+          addressRegion: 'Sindh',
+          postalCode: '75000',
+          addressCountry: 'PK',
+        },
+        
+        // Geo Coordinates (Add your actual coordinates)
+        // geo: {
+        //   '@type': 'GeoCoordinates',
+        //   latitude: '24.8607', // Replace with actual
+        //   longitude: '67.0011', // Replace with actual
+        // },
+        
+        // Area Served
+        areaServed: {
+          '@type': 'Country',
+          name: 'Pakistan',
+        },
+        
+        // Opening Hours
+        openingHoursSpecification: [
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            opens: '09:00',
+            closes: '18:00',
+          },
+          {
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: 'Sunday',
+            opens: '00:00',
+            closes: '00:00',
+            description: 'Closed on Sundays',
+          },
+        ],
+        
+        // Contact Points
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            telephone: '+92 345 2260042',
+            contactType: 'Admissions',
+            email: 'info@ayazahmadacademy.com',
+            areaServed: 'PK',
+            availableLanguage: ['English', 'Urdu'],
+            contactOption: 'TollFree',
+            hoursAvailable: {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+              opens: '09:00',
+              closes: '18:00',
+            },
+          },
+          {
+            '@type': 'ContactPoint',
+            telephone: '+92 345 2260042',
+            contactType: 'Customer Service',
+            email: 'info@ayazahmadacademy.com',
+            areaServed: 'PK',
+            availableLanguage: ['English', 'Urdu'],
+          },
+          {
+            '@type': 'ContactPoint',
+            contactType: 'General Inquiries',
+            email: 'info@ayazahmadacademy.com',
+            areaServed: 'PK',
+            availableLanguage: ['English', 'Urdu'],
+          },
+        ],
+        
+        // Social Media
+        sameAs: [
+          'https://www.facebook.com/AyazAhmadAcadmy?rdid=G53TvFPj5CwXb4YO&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1QD2j4MRmQ%2F#',
+        ],
+      },
+      
+      // Local Business Schema
+      {
+        '@type': 'LocalBusiness',
+        '@id': `${baseUrl}/pages/contact#localbusiness`,
+        name: 'Ayaz Ahmad Academy',
+        image: `${baseUrl}/academy-logo.png`,
+        '@id': `${baseUrl}/#organization`,
+        url: baseUrl,
+        telephone: '+92 345 2260042',
+        email: 'info@ayazahmadacademy.com',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Karachi',
+          addressLocality: 'Karachi',
+          addressRegion: 'Sindh',
+          postalCode: '75000',
+          addressCountry: 'PK',
+        },
+        // geo: {
+        //   '@type': 'GeoCoordinates',
+        //   latitude: '24.8607',
+        //   longitude: '67.0011',
+        // },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          opens: '09:00',
+          closes: '18:00',
+        },
+        priceRange: '$$',
+      },
+      
+      // FAQPage Schema for Contact
+      {
+        '@type': 'FAQPage',
+        '@id': `${baseUrl}/pages/contact#faq`,
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'What is the contact number of Ayaz Ahmad Academy?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'You can reach Ayaz Ahmad Academy at +92-XXX-XXXXXXX. Our phone lines are open Monday to Saturday from 9:00 AM to 6:00 PM. For urgent inquiries, you can also email us at info@ayazahmadacademy.com.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What is the email address for admissions?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'For admissions and general inquiries, email us at info@ayazahmadacademy.com. We respond to all emails within 24 hours during business days.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Where is Ayaz Ahmad Academy located?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Ayaz Ahmad Academy is located at [Your Address], [City], Pakistan. You can visit us during office hours Monday to Saturday, 9:00 AM to 6:00 PM. Please call ahead to schedule an appointment.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'What are the office timings?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Our office is open Monday to Saturday from 9:00 AM to 6:00 PM. We are closed on Sundays and public holidays. For urgent matters outside office hours, please email us.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'How quickly will I receive a response?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'We aim to respond to all inquiries within 24 hours during business days. For urgent admission queries during enrollment season, we typically respond within a few hours.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'Can I visit the academy for a tour?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Yes, we welcome parents and students to visit our academy. Please call us at +92-XXX-XXXXXXX or email to schedule a campus tour and meet our faculty.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'How can I inquire about course fees?',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'For fee structure and payment plans, please contact our admissions office via phone or email. We will provide detailed information about tuition fees, payment schedules, and any available scholarships.',
+            },
+          },
+        ],
+      },
+      
+      // WebPage with Action
+      {
+        '@type': 'WebPage',
+        '@id': `${baseUrl}/pages/contact#webpage`,
+        url: `${baseUrl}/pages/contact`,
+        name: 'Contact Us',
+        potentialAction: {
+          '@type': 'CommunicateAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${baseUrl}/pages/contact`,
+            actionPlatform: [
+              'http://schema.org/DesktopWebPlatform',
+              'http://schema.org/MobileWebPlatform',
+            ],
+          },
+          recipient: {
+            '@type': 'Organization',
+            name: 'Ayaz Ahmad Academy',
+            email: 'info@ayazahmadacademy.com',
+          },
+        },
+      },
+    ],
+  };
+}
 
 export default function ContactPage() {
-  const [form, setForm]       = useState({ name: '', email: '', phone: '', message: '' });
-  const [status, setStatus]   = useState('idle'); // idle | loading | success | error
-  const [errMsg, setErrMsg]   = useState('');
-
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('loading');
-    setErrMsg('');
-
-    try {
-      const res  = await fetch('/api/contact', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(form),
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        setStatus('success');
-        setForm({ name: '', email: '', phone: '', message: '' });
-      } else {
-        setStatus('error');
-        setErrMsg(data.error || 'Something went wrong. Please try again.');
-      }
-    } catch {
-      setStatus('error');
-      setErrMsg('Network error. Please check your connection and try again.');
-    }
-  };
-
+  const structuredData = generateContactStructuredData();
+  
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-[#0a0e27] via-[#1a1f3a] to-[#0a1628]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-[rgba(245,166,35,0.1)] border border-[rgba(245,166,35,0.3)] rounded-full px-5 py-2 mb-6">
-            <div className="w-2 h-2 bg-[#F5A623] rounded-full animate-pulse"></div>
-            <span className="text-[#F5A623] text-sm font-semibold tracking-wider uppercase">Contact Us</span>
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A623] to-[#ff8c00]">Touch</span>
-          </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#F5A623] to-[#ff8c00] mx-auto mb-6 rounded-full"></div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We&apos;d love to hear from you. Reach out for any inquiries.
-          </p>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-
-            {/* Contact Info */}
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Information</h2>
-              <div className="space-y-6">
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#F5A623] to-[#ff8c00] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Address</h3>
-                    <p className="text-gray-600">123 Education Street, City, Pakistan</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#F5A623] to-[#ff8c00] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Phone</h3>
-                    <p className="text-gray-600">+92 XXX XXXXXXX</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#F5A623] to-[#ff8c00] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-1">Email</h3>
-                    <p className="text-gray-600">info@ayazahmadacademy.com</p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-
-              {/* Success state */}
-              {status === 'success' ? (
-                <div className="text-center py-10">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
-                  <p className="text-gray-600 mb-6">Thank you for reaching out. We&apos;ll get back to you within 24–48 hours.</p>
-                  <button
-                    onClick={() => setStatus('idle')}
-                    className="btn-primary"
-                  >
-                    <span>Send Another Message</span>
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Full Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#F5A623] focus:outline-none transition-colors"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email Address <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#F5A623] focus:outline-none transition-colors"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Phone Number <span className="text-gray-400 font-normal">(optional)</span>
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#F5A623] focus:outline-none transition-colors"
-                      placeholder="+92 XXX XXXXXXX"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Message <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      required
-                      rows="5"
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#F5A623] focus:outline-none transition-colors resize-none"
-                      placeholder="Write your message here..."
-                    />
-                  </div>
-
-                  {status === 'error' && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
-                      ⚠️ {errMsg}
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="btn-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    <span>
-                      {status === 'loading' ? 'Sending...' : 'Send Message'}
-                    </span>
-                  </button>
-
-                </form>
-              )}
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+    <>
+      {/* JSON-LD Structured Data for Contact Page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      
+      <div
+        className="min-h-screen"
+        style={{
+          background: 'linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a1628 100%)',
+        }}
+      >
+        <Navbar />
+        <ContactHero />
+        <ContactForm />
+        <Footer />
+      </div>
+    </>
   );
 }

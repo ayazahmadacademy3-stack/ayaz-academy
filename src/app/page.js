@@ -6,17 +6,58 @@ import CambridgeRegistered from '@/components/cambridge-registered/CambridgeRegi
 import AboutUs from '@/components/about-us/AboutUs';
 import Testimonials from '@/components/testimonials/Testimonials';
 import Footer from '@/components/footer/Footer';
+import { generateHomeStructuredData, siteMetadata } from './metadata';
+
+// Page-specific metadata
+export const metadata = {
+  title: 'Home - Best O & A Level Academy in Pakistan',
+  description: siteMetadata.description,
+  keywords: siteMetadata.keywords,
+  openGraph: {
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    url: siteMetadata.siteUrl,
+    siteName: siteMetadata.siteName,
+    images: [
+      {
+        url: `${siteMetadata.siteUrl}/academy-logo.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Ayaz Ahmad Academy',
+      },
+    ],
+    locale: siteMetadata.locale,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    images: [`${siteMetadata.siteUrl}/academy-logo.png`],
+  },
+  alternates: {
+    canonical: siteMetadata.siteUrl,
+  },
+};
 
 export default function Home() {
+  const structuredData = generateHomeStructuredData();
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <HeroSlider />
-      <AboutUs />
-      <WhyChooseUs />
-      <CambridgeRegistered />
-      <Stats />
-      <Testimonials />
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <HeroSlider />
+        <AboutUs />
+        <WhyChooseUs />
+        <CambridgeRegistered />
+        <Stats />
+        <Testimonials />
       
       {/* Welcome Section */}
       {/* <section className="py-20 bg-white">
@@ -157,6 +198,7 @@ export default function Home() {
       
       {/* Simple Footer for Testing */}
      <Footer/>
-    </div>
+      </div>
+    </>
   );
 }

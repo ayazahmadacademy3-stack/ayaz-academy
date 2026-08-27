@@ -2,16 +2,12 @@ import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST || 'smtpout.secureserver.net',
-  port: parseInt(process.env.EMAIL_PORT || '587'),
-  secure: false, // Use TLS
+  port: parseInt(process.env.EMAIL_PORT || '465'),
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    ciphers: 'SSLv3',
-    rejectUnauthorized: false
-  }
 });
 
 const FROM_ADDRESS = process.env.EMAIL_FROM || process.env.EMAIL_USER;
@@ -175,16 +171,6 @@ export async function POST(request) {
       weekday: 'long', year: 'numeric', month: 'long',
       day: 'numeric', hour: '2-digit', minute: '2-digit',
     });
-
-    // Verify transporter connection before sending (optional check)
-    // Note: GoDaddy sometimes fails verification but emails still work
-    try {
-      await transporter.verify();
-      console.log('✅ SMTP connection verified');
-    } catch (verifyError) {
-      console.warn('⚠️  SMTP verification failed:', verifyError.message);
-      console.warn('ℹ️  Attempting to send anyway (GoDaddy often fails verification but sends successfully)');
-    }
 
     const emailPromises = [];
 

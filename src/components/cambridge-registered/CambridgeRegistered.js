@@ -11,7 +11,7 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    text: 'Officially registered Cambridge centre',
+    text: 'Qualified Cambridge-Registered Teachers',
   },
   {
     icon: (
@@ -19,7 +19,7 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
       </svg>
     ),
-    text: 'O & A Level examinations conducted on-site',
+    text: 'Expert Academic Guidance for O & A Level Students',
   },
   {
     icon: (
@@ -41,14 +41,14 @@ const highlights = [
 
 // Fixed positions to avoid hydration mismatch
 const floatingShapes = [
-  { left: 8,  top: 15, color: 'bg-[#F5A623]', delay: '0s',   duration: '6s'  },
-  { left: 80, top: 8,  color: 'bg-[#2B4C9F]', delay: '0.7s', duration: '7s'  },
-  { left: 20, top: 65, color: 'bg-[#F5A623]', delay: '1.4s', duration: '8s'  },
-  { left: 88, top: 72, color: 'bg-[#2B4C9F]', delay: '2.1s', duration: '5s'  },
-  { left: 50, top: 88, color: 'bg-[#F5A623]', delay: '2.8s', duration: '9s'  },
-  { left: 65, top: 25, color: 'bg-[#2B4C9F]', delay: '0.3s', duration: '6.5s'},
-  { left: 5,  top: 50, color: 'bg-[#F5A623]', delay: '1.8s', duration: '7.5s'},
-  { left: 93, top: 40, color: 'bg-[#2B4C9F]', delay: '3.2s', duration: '8.5s'},
+  { left: 8, top: 15, color: 'bg-[#F5A623]', delay: '0s', duration: '6s' },
+  { left: 80, top: 8, color: 'bg-[#2B4C9F]', delay: '0.7s', duration: '7s' },
+  { left: 20, top: 65, color: 'bg-[#F5A623]', delay: '1.4s', duration: '8s' },
+  { left: 88, top: 72, color: 'bg-[#2B4C9F]', delay: '2.1s', duration: '5s' },
+  { left: 50, top: 88, color: 'bg-[#F5A623]', delay: '2.8s', duration: '9s' },
+  { left: 65, top: 25, color: 'bg-[#2B4C9F]', delay: '0.3s', duration: '6.5s' },
+  { left: 5, top: 50, color: 'bg-[#F5A623]', delay: '1.8s', duration: '7.5s' },
+  { left: 93, top: 40, color: 'bg-[#2B4C9F]', delay: '3.2s', duration: '8.5s' },
 ];
 
 export default function CambridgeRegistered() {
@@ -158,7 +158,7 @@ export default function CambridgeRegistered() {
                 }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                Registered Centre
+                Registered Faculty
               </div>
 
               {/* Cambridge logo */}
@@ -202,15 +202,12 @@ export default function CambridgeRegistered() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A623] to-[#ff8c00]">
                 Cambridge
               </span>{' '}
-              Registered Academy
+              Registered Faculty
             </h2>
 
             {/* Body */}
             <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              Ayaz Ahmad Academy is an officially registered Cambridge Assessment International
-              Education centre. Our students sit their O & A Level examinations under the globally
-              trusted Cambridge framework, earning qualifications recognised by universities and
-              employers worldwide.
+              Ayaz Ahmad Academy is dedicated to providing quality education through a team of Cambridge-registered teachers. Our experienced faculty is committed to academic excellence, delivering high-quality instruction, personalised guidance, and a supportive learning environment. We focus on building students’ knowledge, strengthening their skills, and nurturing their confidence to help them achieve their full academic potential.
             </p>
 
             {/* Divider */}

@@ -96,7 +96,7 @@ export default function NotFound() {
           </Link>
 
           <Link 
-            href="/contact"
+            href="/pages/contact"
             className="group relative overflow-hidden border-2 border-[#F5A623] text-[#F5A623] px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:bg-[#F5A623] hover:text-white hover:scale-105"
           >
             Contact Us

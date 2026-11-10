@@ -38,8 +38,8 @@ const facultyData = {
   ],
   Chemistry: [
     {
-      name: 'Osama Shahab',
-      image: '/chem-img/chem3.jpeg',
+      name: 'Miss Maria Danish',
+      image: '/chem-img/chem4.jpeg',
       // qualification: 'MSc Chemistry',
       experience: '7 Years',
       course: "O-Levels (5070), IGCSE (0620), A-levels (9701)",

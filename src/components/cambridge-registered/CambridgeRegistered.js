@@ -11,7 +11,7 @@ const highlights = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    text: 'Qualified Cambridge-Registered Teachers',
+    text: 'Qualified Cambridge certified tutors',
   },
   {
     icon: (
@@ -158,7 +158,7 @@ export default function CambridgeRegistered() {
                 }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                Registered Faculty
+                Cambridge certified tutors
               </div>
 
               {/* Cambridge logo */}
@@ -202,7 +202,7 @@ export default function CambridgeRegistered() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A623] to-[#ff8c00]">
                 Cambridge
               </span>{' '}
-              Registered Faculty
+               certified tutors
             </h2>
 
             {/* Body */}

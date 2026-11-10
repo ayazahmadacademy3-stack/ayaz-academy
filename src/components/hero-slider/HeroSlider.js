@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './HeroSlider.module.css';
 
 const slides = [
@@ -12,7 +13,9 @@ const slides = [
     subtitle: 'Complete Learning Journey',
     description: 'From foundational primary education to advanced university preparation, we provide comprehensive academic support at every stage of your educational journey.',
     primaryBtn: 'Explore Programs',
+    primaryBtnLink: '/pages/courses',
     secondaryBtn: 'Learn More',
+    secondaryBtnLink: '/pages/about',
   },
   {
     id: 2,
@@ -21,7 +24,9 @@ const slides = [
     subtitle: 'Building Tomorrow\'s Innovators',
     description: 'We don\'t just teach subjects – we nurture critical thinking, leadership skills, and character development to prepare students for success in life.',
     primaryBtn: 'Our Approach',
+    primaryBtnLink: '/pages/about',
     secondaryBtn: 'View Programs',
+    secondaryBtnLink: '/pages/courses',
   },
   {
     id: 3,
@@ -30,7 +35,9 @@ const slides = [
     subtitle: 'Achieve Your Dreams',
     description: 'With proven teaching methods, personalized attention, and a supportive learning environment, we help students unlock their full potential and achieve outstanding results.',
     primaryBtn: 'Get Started',
+    primaryBtnLink: '/pages/enroll',
     secondaryBtn: 'Contact Us',
+    secondaryBtnLink: '/pages/contact',
   },
 ];
 
@@ -101,12 +108,12 @@ export default function HeroSlider() {
 
                   {/* Buttons */}
                   <div className="flex flex-wrap gap-4 pt-4">
-                    <button className="btn-primary">
+                    <Link href={slide.primaryBtnLink} className="btn-primary">
                       <span>{slide.primaryBtn}</span>
-                    </button>
-                    <button className="btn-outline">
+                    </Link>
+                    <Link href={slide.secondaryBtnLink} className="btn-outline">
                       <span>{slide.secondaryBtn}</span>
-                    </button>
+                    </Link>
                   </div>
                 </div>
 
